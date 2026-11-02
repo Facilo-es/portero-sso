@@ -2,7 +2,7 @@
   "name": "facilo/portero-sso",
   "description": "Work logins for Craft, through any SAML or OpenID Connect provider.",
   "type": "craft-plugin",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": "proprietary",
   "support": {
     "email": "support@facilo.es",
@@ -27,6 +27,12 @@
   "autoload-dev": {
     "psr-4": {
       "facilo\\portero\\tests\\": "tests/"
+    }
+  },
+  "config": {
+    "allow-plugins": {
+      "craftcms/plugin-installer": true,
+      "yiisoft/yii2-composer": true
     }
   },
   "extra": {

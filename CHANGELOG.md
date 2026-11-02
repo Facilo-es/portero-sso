@@ -1,5 +1,10 @@
 # Release Notes for Portero SSO
 
+## 1.0.1 - 2026-11-02
+
+### Fixed
+- Composer now allows the Craft and Yii installer plugins, so a fresh `composer install` of the plugin works.
+
 ## 1.0.0 - 2026-11-02
 
 ### Added

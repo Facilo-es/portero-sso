@@ -30,6 +30,5 @@ jobs:
       - uses: shivammathur/setup-php@v2
         with: { php-version: '8.2' }
       - run: composer create-project craftcms/craft /tmp/craft --no-install --no-scripts --no-interaction
-      - run: cd /tmp/craft && composer update craftcms/cms --no-install --no-scripts --no-interaction
-      - run: cd /tmp/craft && composer install --no-scripts --no-interaction
+      - run: cd /tmp/craft && composer update --no-scripts --no-interaction
       - run: grep -q "cp.login.alternative-login-methods" /tmp/craft/vendor/craftcms/cms/src/templates/_special/login.twig
