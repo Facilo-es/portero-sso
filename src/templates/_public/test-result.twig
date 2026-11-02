@@ -1,0 +1,36 @@
+{% extends '_layouts/basecp' %}
+{% set title = report.passed ? 'It works.'|t('portero-sso') : "That didn't work."|t('portero-sso') %}
+{% block body %}
+<main class="pt pt-public">
+  <article class="pt-card">
+    {% if report.passed %}
+      <header class="pt-verdict pass">
+        <svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="23" fill="currentColor"/><path d="M13 25l8 8 15-17" fill="none" stroke="#0e1a24" stroke-width="4"/></svg>
+        <div><h1>{{ 'It works.'|t('portero-sso') }}</h1><p>{{ '{provider} confirmed {email}.'|t('portero-sso', {provider: report.provider, email: report.email}) }}</p></div>
+      </header>
+      <div class="pt-cardbody">
+        <h2>{{ 'What would happen:'|t('portero-sso') }}</h2>
+        <ul class="pt-would">
+          <li>{{ report.what }}</li>
+          {% if report.add %}<li>{{ 'Add to {groups}'|t('portero-sso', {groups: report.add|join(', ')}) }}</li>{% endif %}
+          {% if report.remove %}<li>{{ 'Remove from {groups}'|t('portero-sso', {groups: report.remove|join(', ')}) }}</li>{% endif %}
+        </ul>
+        {% include 'portero-sso/_public/received' %}
+        <a class="btn submit" href="{{ nextUrl }}">{{ 'Finish setup'|t('portero-sso') }}</a>
+      </div>
+    {% else %}
+      <header class="pt-verdict fail">
+        <svg viewBox="0 0 48 48" aria-hidden="true"><rect x="9" y="9" width="30" height="30" transform="rotate(45 24 24)" fill="#fff"/><path d="M18 18l12 12M30 18L18 30" stroke="#991b1b" stroke-width="4"/></svg>
+        <div><h1>{{ "That didn't work."|t('portero-sso') }}</h1><p>{{ report.explanation }}</p></div>
+      </header>
+      <div class="pt-cardbody">
+        <h2>{{ 'How to fix it:'|t('portero-sso') }}</h2>
+        <p>{{ report.fix }}</p>
+        <p class="pt-why"><code>{{ report.code }}</code></p>
+        {% if report.rows %}{% include 'portero-sso/_public/received' %}{% endif %}
+        <a class="btn submit" href="{{ nextUrl }}">{{ 'Try again'|t('portero-sso') }}</a>
+      </div>
+    {% endif %}
+  </article>
+</main>
+{% endblock %}

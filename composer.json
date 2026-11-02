@@ -1,0 +1,40 @@
+{
+  "name": "facilo/portero-sso",
+  "description": "Work logins for Craft, through any SAML or OpenID Connect provider.",
+  "type": "craft-plugin",
+  "version": "1.0.0",
+  "license": "proprietary",
+  "support": {
+    "email": "support@facilo.es",
+    "issues": "https://github.com/Facilo-es/portero-sso/issues",
+    "docs": "https://github.com/Facilo-es/portero-sso/blob/main/docs/README.md",
+    "source": "https://github.com/Facilo-es/portero-sso"
+  },
+  "require": {
+    "php": "^8.2",
+    "craftcms/cms": "^5.6.0",
+    "onelogin/php-saml": "^4.3.2",
+    "firebase/php-jwt": "^7.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^11.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "facilo\\portero\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "facilo\\portero\\tests\\": "tests/"
+    }
+  },
+  "extra": {
+    "handle": "portero-sso",
+    "name": "Portero SSO",
+    "developer": "Facilo",
+    "documentationUrl": "https://github.com/Facilo-es/portero-sso/blob/main/docs/README.md",
+    "class": "facilo\\portero\\Plugin",
+    "changelogUrl": "https://raw.githubusercontent.com/Facilo-es/portero-sso/main/CHANGELOG.md"
+  }
+}

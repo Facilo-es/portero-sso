@@ -1,0 +1,27 @@
+{% extends '_layouts/cp' %}
+{% set title = 'Security summary'|t('portero-sso') %}
+{% set selectedSubnavItem = 'connections' %}
+{% set crumbs = [{label: 'Connections'|t('portero-sso'), url: cpUrl('portero-sso')}] %}
+{% do view.registerAssetBundle('facilo\\portero\\Craft\\assets\\PorteroAsset') %}
+
+{% block content %}
+<div class="pt">
+  <section class="pt-pane pt-stepbox">
+    <h2>{{ connection.name }}</h2>
+    <p class="lead">{{ 'A one-page summary for whoever signs off your security review.'|t('portero-sso') }}</p>
+    <table class="pt-facts">
+      <tr><td>{{ 'Login system'|t('portero-sso') }}</td><td>{{ provider }}, {{ connection.protocol == 'saml' ? 'SAML 2.0' : 'OpenID Connect, Authorization Code with PKCE' }}</td></tr>
+      <tr><td>{{ 'Signatures'|t('portero-sso') }}</td><td>{{ connection.protocol == 'saml' ? 'Signed assertions required, always. SHA-1 refused.'|t('portero-sso') : 'RS256 or ES256 only. Unsigned and HMAC tokens refused.'|t('portero-sso') }}</td></tr>
+      {% if connection.protocol == 'saml' %}<tr><td>{{ 'Encrypted assertions'|t('portero-sso') }}</td><td>{{ connection.saml.encryptAssertions ?? false ? 'On'|t('portero-sso') : 'Off'|t('portero-sso') }}</td></tr>{% endif %}
+      <tr><td>{{ 'Certificate'|t('portero-sso') }}</td><td>{{ days is null ? 'Not used by this method'|t('portero-sso') : '{n} days left'|t('portero-sso', {n: days}) }}</td></tr>
+      <tr><td>{{ 'Allowed email domains'|t('portero-sso') }}</td><td>{{ connection.allowedDomains ? connection.allowedDomains|join(', ') : 'Everyone the provider sends'|t('portero-sso') }}</td></tr>
+      <tr><td>{{ 'Longest session (hours)'|t('portero-sso') }}</td><td>{{ connection.maxSessionHours ?? 'No limit set'|t('portero-sso') }}</td></tr>
+      <tr><td>{{ 'Sign out at the provider ends this session'|t('portero-sso') }}</td><td>{{ connection.acceptProviderLogout ? 'On'|t('portero-sso') : 'Off'|t('portero-sso') }}</td></tr>
+      <tr><td>{{ 'Who must use single sign-on?'|t('portero-sso') }}</td><td>{{ rules.mode == 'everyone' ? 'Everyone except the accounts below'|t('portero-sso') : 'Nobody'|t('portero-sso') }}</td></tr>
+      <tr><td>{{ 'Break-glass accounts'|t('portero-sso') }}</td><td>{{ breakGlass|length }}</td></tr>
+      <tr><td>{{ 'Last test'|t('portero-sso') }}</td><td>{{ lastTest ? lastTest|date('d M Y H:i') : 'Not tested'|t('portero-sso') }}</td></tr>
+    </table>
+    <a class="btn submit" href="{{ cpUrl('portero-sso') }}">{{ 'Connections'|t('portero-sso') }}</a>
+  </section>
+</div>
+{% endblock %}

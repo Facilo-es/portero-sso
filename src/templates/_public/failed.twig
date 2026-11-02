@@ -1,0 +1,16 @@
+{% extends '_layouts/basecp' %}
+{% set title = "We couldn't sign you in."|t('portero-sso') %}
+{% block body %}
+<main class="pt pt-public">
+  <article class="pt-card">
+    <header class="pt-verdict fail">
+      <svg viewBox="0 0 48 48" aria-hidden="true"><rect x="9" y="9" width="30" height="30" transform="rotate(45 24 24)" fill="#fff"/><path d="M18 18l12 12M30 18L18 30" stroke="#991b1b" stroke-width="4"/></svg>
+      <div><h1>{{ "We couldn't sign you in."|t('portero-sso') }}</h1></div>
+    </header>
+    <div class="pt-cardbody">
+      <p>{{ 'Your IT team can see the reason in Login history, under code {code}.'|t('portero-sso', {code: code}) }}</p>
+      <a class="btn submit" href="{{ loginUrl }}">{{ 'Back to sign in'|t('portero-sso') }}</a>
+    </div>
+  </article>
+</main>
+{% endblock %}

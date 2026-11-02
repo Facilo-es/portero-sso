@@ -1,0 +1,8 @@
+<table class="pt-received">
+  <thead><tr><th>{{ 'Received from {provider}'|t('portero-sso', {provider: report.provider}) }}</th><th></th><th>{{ 'Used as'|t('portero-sso') }}</th></tr></thead>
+  <tbody>
+    {% for row in report.rows %}
+      <tr><td>{{ row.name }}</td><td>{{ row.values }}</td><td>{{ row.used }}</td></tr>
+    {% endfor %}
+  </tbody>
+</table>

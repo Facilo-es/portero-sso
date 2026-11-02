@@ -1,0 +1,29 @@
+{% extends '_layouts/cp' %}
+{% set title = 'Login history'|t('portero-sso') %}
+{% set selectedSubnavItem = 'history' %}
+{% do view.registerAssetBundle('facilo\\portero\\Craft\\assets\\PorteroAsset') %}
+
+{% block content %}
+<div class="pt">
+  <section class="pt-pane">
+    <form class="pt-panehead" method="get">
+      <span class="sp"></span>
+      <div class="select"><select name="connection" data-portero-autosubmit aria-label="{{ 'Connection'|t('portero-sso') }}">
+        <option value="">{{ 'All connections'|t('portero-sso') }}</option>
+        {% for uid, c in connections %}<option value="{{ uid }}" {{ uid == connection ? 'selected' }}>{{ c.name }}</option>{% endfor %}
+      </select></div>
+      <div class="select"><select name="outcome" data-portero-autosubmit aria-label="{{ 'Result'|t('portero-sso') }}">
+        <option value="">{{ 'All outcomes'|t('portero-sso') }}</option>
+        <option value="signed-in" {{ outcome == 'signed-in' ? 'selected' }}>{{ 'Signed in'|t('portero-sso') }}</option>
+        <option value="signed-out" {{ outcome == 'signed-out' ? 'selected' }}>{{ 'Signed out by the provider'|t('portero-sso') }}</option>
+        <option value="refused" {{ outcome == 'refused' ? 'selected' }}>{{ 'Refused'|t('portero-sso') }}</option>
+      </select></div>
+    </form>
+    {% if rows %}
+      {% include 'portero-sso/_history-rows' with {rows: rows} only %}
+    {% else %}
+      <p class="pt-note">{{ 'Nothing yet. Sign-in attempts appear here for {days} days.'|t('portero-sso', {days: days}) }}</p>
+    {% endif %}
+  </section>
+</div>
+{% endblock %}

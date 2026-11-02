@@ -1,0 +1,10 @@
+<h2>{{ 'Try it before anyone else does.'|t('portero-sso') }}</h2>
+<p class="lead">{{ 'A test shows what {provider} sends and what would happen. It changes nothing on this site.'|t('portero-sso', {provider: provider}) }}</p>
+<form method="post" target="_blank">{{ csrfInput() }}{{ actionInput('portero-sso/connections/test') }}{{ hiddenInput('uid', uid) }}<button class="btn submit" type="submit">{{ 'Test sign-in'|t('portero-sso') }}</button></form>
+{% if lastTest %}<p class="pt-note">{{ 'Last test'|t('portero-sso') }}: {{ 'Passed'|t('portero-sso') }}, {{ lastTest|date('d M H:i') }}</p>{% endif %}
+<div class="pt-actions">
+  <a class="btn" href="{{ cpUrl('portero-sso/connections/' ~ uid ~ '/step/4') }}">{{ 'Back'|t('portero-sso') }}</a>
+  <form method="post">{{ csrfInput() }}{{ actionInput('portero-sso/connections/delete') }}{{ hiddenInput('uid', uid) }}<button class="btn" type="submit" data-portero-confirm="{{ 'Delete this connection? {n} people are linked to it. Their links go, and their Craft accounts stay.'|t('portero-sso', {n: people}) }}">{{ 'Delete'|t('portero-sso') }}</button></form>
+  <span class="sp"></span>
+  {% if lastTest %}<form method="post">{{ csrfInput() }}{{ actionInput('portero-sso/connections/finish') }}{{ hiddenInput('uid', uid) }}<button class="btn submit" type="submit" {{ readOnly ? 'disabled' }}>{{ 'Finish setup'|t('portero-sso') }}</button></form>{% endif %}
+</div>

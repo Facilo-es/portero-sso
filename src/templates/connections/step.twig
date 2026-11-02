@@ -1,0 +1,24 @@
+{% extends '_layouts/cp' %}
+{% import '_includes/forms.twig' as forms %}
+{% set title = connection ? connection.name : 'Add a connection'|t('portero-sso') %}
+{% set selectedSubnavItem = 'connections' %}
+{% set crumbs = [{label: 'Connections'|t('portero-sso'), url: cpUrl('portero-sso')}] %}
+{% do view.registerAssetBundle('facilo\\portero\\Craft\\assets\\PorteroAsset') %}
+
+{% block content %}
+<div class="pt pt-setup">
+  <ol class="pt-rail">
+    {% for label in steps %}
+      {% set n = loop.index %}
+      <li class="{{ n == step ? 'now' : (n < step ? 'done') }}">
+        {% if uid %}<a href="{{ cpUrl('portero-sso/connections/' ~ uid ~ '/step/' ~ n) }}">{{ label|t('portero-sso') }}</a>{% else %}<span>{{ label|t('portero-sso') }}</span>{% endif %}
+      </li>
+    {% endfor %}
+  </ol>
+  <section class="pt-pane pt-stepbox">
+    <p class="pt-kicker">{{ 'Step {n} of 5'|t('portero-sso', {n: step}) }}</p>
+    {% if readOnly %}<p class="pt-note">{{ 'Changes are off on this environment. Make them where admin changes are allowed, and deploy.'|t('portero-sso') }}</p>{% endif %}
+    {% include 'portero-sso/connections/_step' ~ step %}
+  </section>
+</div>
+{% endblock %}

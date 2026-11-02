@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="Portero SSO">
+  <defs>
+    <linearGradient id="a" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1D3347"/><stop offset="1" stop-color="#0B141C"/></linearGradient>
+    <pattern id="d" width="9" height="9" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1" fill="#5EEAD4" opacity=".2"/></pattern>
+    <linearGradient id="b" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#99F6E4"/><stop offset="1" stop-color="#2DD4BF"/></linearGradient>
+  </defs>
+  <rect width="100" height="100" rx="24" fill="url(#a)"/>
+  <rect width="100" height="100" rx="24" fill="url(#d)"/>
+  <path d="M50 16a21 21 0 00-9.700 39.600L34 84h32l-6.300-28.400A21 21 0 0050 16z" fill="url(#b)"/>
+  <circle cx="50" cy="37" r="7" fill="#0E1A24"/>
+</svg>

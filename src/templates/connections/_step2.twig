@@ -1,0 +1,18 @@
+<h2>{{ 'Copy these into {provider}.'|t('portero-sso', {provider: provider}) }}</h2>
+<p class="lead"><a href="https://github.com/Facilo-es/portero-sso/blob/main/docs/{{ connection.preset }}.md" target="_blank" rel="noopener">{{ 'Open the {provider} guide'|t('portero-sso', {provider: provider}) }}</a></p>
+{% macro row(label, value) %}
+  <div class="pt-url"><b>{{ label }}</b><code>{{ value }}</code><button type="button" class="btn small" data-portero-copy="{{ value }}" data-copied="{{ 'Copied'|t('portero-sso') }}">{{ 'Copy'|t('portero-sso') }}</button></div>
+{% endmacro %}
+{% if connection.protocol == 'saml' %}
+  {{ _self.row('Entity ID'|t('portero-sso'), connection.saml.spEntityId ?? urls.metadata) }}
+  {{ _self.row('Sign-in URL (ACS)'|t('portero-sso'), urls.acs) }}
+  {{ _self.row('Metadata URL'|t('portero-sso'), urls.metadata) }}
+  {{ _self.row('Logout URL'|t('portero-sso'), urls.slo) }}
+  <p><a class="btn" href="{{ urls.metadata }}" download="portero-{{ connection.handle }}.xml">{{ 'Download metadata'|t('portero-sso') }}</a></p>
+{% else %}
+  {{ _self.row('Redirect URL'|t('portero-sso'), urls.redirect) }}
+  {{ _self.row('Logout URL'|t('portero-sso'), urls.logout) }}
+  {{ _self.row('Back-channel logout URL'|t('portero-sso'), urls.backchannel) }}
+{% endif %}
+<p class="pt-note">{{ 'These addresses use {baseUrl}. If your production address is different, finish this on production or set `PORTERO_BASE_URL`.'|t('portero-sso', {baseUrl: baseUrl})|md(inlineOnly=true) }}</p>
+<div class="pt-actions"><a class="btn" href="{{ cpUrl('portero-sso/connections/' ~ uid ~ '/step/1') }}">{{ 'Back'|t('portero-sso') }}</a><span class="sp"></span><a class="btn submit" href="{{ cpUrl('portero-sso/connections/' ~ uid ~ '/step/3') }}">{{ 'Continue'|t('portero-sso') }}</a></div>

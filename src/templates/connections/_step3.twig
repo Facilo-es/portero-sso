@@ -1,0 +1,46 @@
+{% import '_includes/forms.twig' as forms %}
+<form method="post">
+  {{ csrfInput() }}{{ actionInput('portero-sso/connections/save-step') }}{{ hiddenInput('step', 3) }}{{ hiddenInput('uid', uid) }}
+  <fieldset {{ readOnly ? 'disabled' }}>
+  {% if connection.protocol == 'saml' %}
+    <h2>{{ 'How would you like to add your provider\'s details?'|t('portero-sso') }}</h2>
+    {% set source = raw.saml.source ?? 'url' %}
+    <div class="pt-ways">
+      <label><input type="radio" name="source" value="url" {{ source == 'url' ? 'checked' }}>{{ 'Metadata URL (recommended)'|t('portero-sso') }}</label>
+      <label><input type="radio" name="source" value="xml" {{ source == 'xml' ? 'checked' }}>{{ 'Paste metadata XML'|t('portero-sso') }}</label>
+      <label><input type="radio" name="source" value="typed" {{ source == 'typed' ? 'checked' }}>{{ 'Type them in'|t('portero-sso') }}</label>
+    </div>
+    <div data-source="url">{{ forms.textField({label: 'Metadata URL'|t('portero-sso'), name: 'metadataUrl', value: raw.saml.metadataUrl ?? ''}) }}</div>
+    <div data-source="xml">{{ forms.textareaField({label: 'Metadata XML'|t('portero-sso'), name: 'metadataXml', rows: 8, class: 'code'}) }}</div>
+    <div data-source="typed">
+      {{ forms.textField({label: 'Provider Entity ID'|t('portero-sso'), name: 'idpEntityId', value: raw.saml.idpEntityId ?? ''}) }}
+      {{ forms.textField({label: 'Provider sign-in URL'|t('portero-sso'), name: 'ssoUrl', value: raw.saml.ssoUrl ?? ''}) }}
+      {{ forms.textField({label: 'Provider logout URL'|t('portero-sso'), instructions: 'Optional. Needed to sign people out of the provider as well.'|t('portero-sso'), name: 'sloUrl', value: raw.saml.sloUrl ?? ''}) }}
+      {{ forms.textareaField({label: 'Signing certificates'|t('portero-sso'), name: 'certs', rows: 6, class: 'code', value: (raw.saml.certs ?? [])|join("\n")}) }}
+    </div>
+    {% if raw.saml.ssoUrl ?? false %}<p class="pt-note">{{ 'Saved: {url}'|t('portero-sso', {url: raw.saml.ssoUrl}) }}</p>{% endif %}
+    <details class="pt-more" {{ (errors.nameIdFormat is defined or errors.spPrivateKey is defined or errors.spCertificate is defined) ? 'open' }}>
+      <summary>{{ 'Signing and encryption'|t('portero-sso') }}</summary>
+      {{ forms.selectField({label: 'NameID format'|t('portero-sso'), instructions: 'Leave it on Provider default unless your provider asks for one. Okta needs one with signed requests.'|t('portero-sso'), name: 'nameIdFormat', value: raw.saml.nameIdFormat ?? '', errors: errors.nameIdFormat is defined ? [errors.nameIdFormat], options: [
+        {label: 'Provider default'|t('portero-sso'), value: ''},
+        {label: 'Email address'|t('portero-sso'), value: 'urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress'},
+        {label: 'Persistent'|t('portero-sso'), value: 'urn:oasis:names:tc:SAML:2.0:nameid-format:persistent'},
+        {label: 'Unspecified'|t('portero-sso'), value: 'urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified'},
+      ]}) }}
+      {{ forms.textField({label: 'Stable attribute'|t('portero-sso'), instructions: "An attribute that never changes for a person. It replaces the NameID. Needed if your provider sends a temporary ID."|t('portero-sso'), name: 'stableAttribute', value: raw.saml.stableAttribute ?? ''}) }}
+      {{ forms.lightswitchField({label: 'Sign requests'|t('portero-sso'), name: 'signRequests', on: raw.saml.signRequests ?? false}) }}
+      {{ forms.lightswitchField({label: 'Encrypted assertions'|t('portero-sso'), name: 'encryptAssertions', on: raw.saml.encryptAssertions ?? false}) }}
+      <p class="pt-note">{{ 'Both need a key pair for this site. Create it with `php craft portero/keys/generate {handle}`.'|t('portero-sso', {handle: connection.handle})|md(inlineOnly=true) }}</p>
+      {{ forms.textField({label: 'Private key'|t('portero-sso'), instructions: 'Enter an environment variable.'|t('portero-sso'), name: 'spPrivateKey', value: raw.saml.spPrivateKey ?? '', errors: errors.spPrivateKey is defined ? [errors.spPrivateKey]}) }}
+      {{ forms.textField({label: 'Certificate'|t('portero-sso'), instructions: 'Enter an environment variable.'|t('portero-sso'), name: 'spCertificate', value: raw.saml.spCertificate ?? '', errors: errors.spCertificate is defined ? [errors.spCertificate]}) }}
+    </details>
+  {% else %}
+    <h2>{{ 'Tell this site about your provider'|t('portero-sso') }}</h2>
+    {{ forms.textField({label: 'Issuer URL'|t('portero-sso'), name: 'issuer', value: raw.oidc.issuer ?? '', errors: errors.issuer is defined ? [errors.issuer]}) }}
+    {{ forms.textField({label: 'Client ID'|t('portero-sso'), name: 'clientId', value: raw.oidc.clientId ?? ''}) }}
+    {{ forms.textField({label: 'Client secret'|t('portero-sso'), instructions: "Enter an environment variable such as `$OKTA_CLIENT_SECRET`. Portero won't store a typed secret."|t('portero-sso'), name: 'clientSecret', value: raw.oidc.clientSecret ?? '', errors: errors.clientSecret is defined ? [errors.clientSecret]}) }}
+    {{ forms.textField({label: 'Scopes'|t('portero-sso'), instructions: 'Add `groups` if your provider sends groups only when asked, as Okta does.'|t('portero-sso'), name: 'scope', value: raw.oidc.scope ?? 'openid email profile'}) }}
+  {% endif %}
+  </fieldset>
+  <div class="pt-actions"><a class="btn" href="{{ cpUrl('portero-sso/connections/' ~ uid ~ '/step/2') }}">{{ 'Back'|t('portero-sso') }}</a><span class="sp"></span><button class="btn submit" type="submit" {{ readOnly ? 'disabled' }}>{{ 'Continue'|t('portero-sso') }}</button></div>
+</form>

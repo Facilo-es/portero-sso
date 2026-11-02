@@ -1,0 +1,23 @@
+{% import '_includes/forms.twig' as forms %}
+<h2>{{ 'Which login system does your organization use?'|t('portero-sso') }}</h2>
+<form method="post">
+  {{ csrfInput() }}{{ actionInput('portero-sso/connections/save-step') }}{{ hiddenInput('step', 1) }}{{ hiddenInput('uid', uid) }}
+  <fieldset {{ readOnly ? 'disabled' }}>
+    <div class="pt-providers">
+      {% for key, preset in presets %}
+        <label class="pt-provider"><input type="radio" name="preset" value="{{ key }}" data-label="{{ preset.label }}" data-protocols="{{ preset.protocols|join(',') }}" {{ (raw.preset ?? 'okta') == key ? 'checked' }}><span>{{ preset.label|t('portero-sso') }}</span></label>
+      {% endfor %}
+    </div>
+    {{ forms.textField({label: 'Name'|t('portero-sso'), instructions: 'Shown in Portero and in Login history.'|t('portero-sso'), name: 'name', value: raw.name ?? 'Okta', errors: errors.name is defined ? [errors.name], inputAttributes: raw ? {} : {data: {auto: '1'}}}) }}
+    <div class="pt-method">
+      {{ forms.selectField({label: 'Sign-in method'|t('portero-sso'), name: 'protocol', value: raw.protocol ?? 'saml', options: [{label: 'SAML', value: 'saml'}, {label: 'OpenID Connect', value: 'oidc'}]}) }}
+    </div>
+    {{ forms.textField({label: 'Button label'|t('portero-sso'), name: 'buttonLabel', value: raw.buttonLabel ?? 'Sign in with {provider}'|t('portero-sso', {provider: 'Okta'}), inputAttributes: {data: {template: 'Sign in with {provider}'|t('portero-sso', {provider: '{provider}'}), auto: raw ? '0' : '1'}}}) }}
+    {{ forms.lightswitchField({label: 'Show on the control panel login page'|t('portero-sso'), name: 'showOnCpLogin', on: raw.showOnCpLogin ?? true}) }}
+    {% if siteOptions|length > 1 %}
+      {{ forms.checkboxSelectField({label: 'Sites'|t('portero-sso'), instructions: "Front-end sign-in works on these sites. Craft's accounts are shared across sites, so this decides where people can sign in, not who exists."|t('portero-sso'), name: 'sites', options: siteOptions, values: (raw.sites ?? []) ?: '*', showAllOption: true, allLabel: 'All sites'|t('portero-sso')}) }}
+      {{ forms.selectField({label: 'Address given to your provider'|t('portero-sso'), instructions: "Follow the site in use needs each site's addresses added to your provider. Choosing one site keeps a single set, and everyone signs in on that site's address."|t('portero-sso'), name: 'addressSite', value: raw.addressSite ?? '', options: [{label: 'Follow the site in use'|t('portero-sso'), value: ''}]|merge(siteOptions)}) }}
+    {% endif %}
+  </fieldset>
+  <div class="pt-actions"><a class="btn" href="{{ cpUrl('portero-sso') }}">{{ 'Back'|t('portero-sso') }}</a><span class="sp"></span><button class="btn submit" type="submit" {{ readOnly ? 'disabled' }}>{{ 'Continue'|t('portero-sso') }}</button></div>
+</form>

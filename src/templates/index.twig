@@ -1,0 +1,71 @@
+{% extends '_layouts/cp' %}
+{% set title = 'Connections'|t('portero-sso') %}
+{% set selectedSubnavItem = 'connections' %}
+{% do view.registerAssetBundle('facilo\\portero\\Craft\\assets\\PorteroAsset') %}
+
+{% block actionButton %}
+  {% if rows %}<a class="btn submit" href="{{ cpUrl('portero-sso/connections/new') }}">{{ 'Add a connection'|t('portero-sso') }}</a>{% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="pt">
+  {% if not rows %}
+    <div class="pt-empty">
+      <h2>{{ 'Let your team sign in with their work account'|t('portero-sso') }}</h2>
+      <p>{{ 'Connect Okta, Microsoft, Google or any SAML or OpenID Connect provider. Setup takes about 15 minutes, and you can test it before anyone is affected.'|t('portero-sso') }}</p>
+      <a class="btn submit" href="{{ cpUrl('portero-sso/connections/new') }}">{{ 'Add a connection'|t('portero-sso') }}</a>
+    </div>
+  {% else %}
+    <section class="pt-board" aria-label="{{ 'Connections'|t('portero-sso') }}">
+      <div class="pt-row pt-head"><span>{{ 'Connection'|t('portero-sso') }}</span><span>{{ 'Method'|t('portero-sso') }}</span><span>{{ 'Last test'|t('portero-sso') }}</span><span>{{ 'Certificate'|t('portero-sso') }}</span><span>{{ 'People'|t('portero-sso') }}</span><span>{{ 'Status'|t('portero-sso') }}</span></div>
+      {% for row in rows %}
+        {% set c = row.connection %}
+        <div class="pt-row">
+          <a class="pt-name" href="{{ cpUrl('portero-sso/connections/' ~ c.uid ~ '/step/4') }}">{{ c.name }}<small>{{ c.handle }}</small></a>
+          <div class="pt-val">{{ c.protocol == 'saml' ? 'SAML' : 'OpenID Connect' }}</div>
+          <div class="pt-val">{% if row.lastTest %}{{ 'Passed'|t('portero-sso') }}<small>{{ row.lastTest|date('d M') }}</small>{% else %}{{ 'Not tested'|t('portero-sso') }}{% endif %}</div>
+          {% if row.days is null %}
+            <div class="pt-big none">&ndash;</div>
+          {% elseif row.days <= 30 %}
+            <div class="pt-big pt-warn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2L1 21h22zM11 9h2v6h-2zm0 7.500h2v2h-2z"/></svg>{{ row.days }}<small>{{ 'days'|t('portero-sso') }}</small></div>
+          {% else %}
+            <div class="pt-big">{{ row.days }}<small>{{ 'days'|t('portero-sso') }}</small></div>
+          {% endif %}
+          <div class="pt-big">{{ row.people }}</div>
+          <form method="post">
+            {{ csrfInput() }}{{ actionInput('portero-sso/connections/toggle') }}{{ hiddenInput('uid', c.uid) }}
+            <button class="pt-state {{ c.enabled ? 'on' : 'off' }}" type="submit">
+              {% if c.enabled %}<svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0a8 8 0 100 16A8 8 0 008 0zm3.700 5.600l-4.600 5a.8.8 0 01-1.200 0L4.200 8.700l1.100-1.100 1.200 1.300 4-4.400z"/></svg>{{ 'Enabled'|t('portero-sso') }}
+              {% else %}<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.800" aria-hidden="true"><circle cx="8" cy="8" r="6.800"/></svg>{{ 'Disabled'|t('portero-sso') }}{% endif %}
+            </button>
+          </form>
+        </div>
+      {% endfor %}
+    </section>
+
+    <div class="pt-two">
+      <section class="pt-pane">
+        <div class="pt-panehead"><h2>{{ 'Login history'|t('portero-sso') }}</h2><span class="sp"></span><a class="btn small" href="{{ cpUrl('portero-sso/history') }}">{{ 'All connections'|t('portero-sso') }}</a></div>
+        {% if history %}
+          {% include 'portero-sso/_history-rows' with {rows: history} only %}
+        {% else %}
+          <p class="pt-note">{{ 'Nothing yet. Sign-in attempts appear here for {days} days.'|t('portero-sso', {days: rules.historyDays}) }}</p>
+        {% endif %}
+      </section>
+      <aside class="pt-pane pt-rules">
+        <h3>{{ 'Who must use single sign-on?'|t('portero-sso') }}</h3>
+        <div class="pt-seg">
+          <span class="{{ rules.mode == 'nobody' ? 'on' }}"><i></i>{{ 'Nobody'|t('portero-sso') }}</span>
+          <span class="{{ rules.mode == 'everyone' ? 'on' }}"><i></i>{{ 'Everyone except the accounts below'|t('portero-sso') }}</span>
+        </div>
+        <h3>{{ 'Break-glass accounts'|t('portero-sso') }}</h3>
+        <p>{{ "These people can always use a password. Keep at least one, so a provider outage can't lock you out."|t('portero-sso') }}</p>
+        {% for user in breakGlass %}
+          <div class="pt-glass"><i>{{ user.name|split(' ')|map(w => w|slice(0,1))|join|slice(0,2)|upper }}</i><span>{{ user.name }}<small>{{ 'Admin'|t('portero-sso') }}{{ user.password ? ', ' ~ 'has a password'|t('portero-sso') }}</small></span></div>
+        {% endfor %}
+        <a class="btn" href="{{ cpUrl('portero-sso/rules') }}">{{ 'Sign-in rules'|t('portero-sso') }}</a>
+      </aside>
+    </div>
+  {% endif %}
+</div>
+{% endblock %}

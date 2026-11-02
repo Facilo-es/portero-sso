@@ -1,0 +1,13 @@
+{# Who this person signs in as, on their page in the control panel. #}
+<div class="meta pt-links">
+  <h6 class="padded">{{ 'Single sign-on'|t('portero-sso') }}</h6>
+  {% for link in links %}
+    <div class="data">
+      <h5 class="heading">{{ link.connection }}</h5>
+      <div class="value">
+        {{ link.lastSignIn ? link.lastSignIn|date('d M Y H:i') : '–' }}
+        <button type="button" class="btn small formsubmit" data-action="portero-sso/connections/unlink" data-param="linkId" data-value="{{ link.id }}" data-redirect="{{ redirect|hash }}" data-confirm="{{ "Remove this link? The account stays, and the next sign-in follows your connection rules. It doesn't sign this person out."|t('portero-sso') }}">{{ 'Remove link'|t('portero-sso') }}</button>
+      </div>
+    </div>
+  {% endfor %}
+</div>

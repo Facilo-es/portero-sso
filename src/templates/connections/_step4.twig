@@ -1,0 +1,68 @@
+{% import '_includes/forms.twig' as forms %}
+<h2>{{ 'Who gets in'|t('portero-sso') }}</h2>
+<form method="post">
+  {{ csrfInput() }}{{ actionInput('portero-sso/connections/save-step') }}{{ hiddenInput('step', 4) }}{{ hiddenInput('uid', uid) }}
+  <fieldset {{ readOnly ? 'disabled' }}>
+  {{ forms.textField({label: 'Allowed email domains'|t('portero-sso'), instructions: 'Only these domains can sign in, for example `acme.com`. Leave empty to trust everyone your provider sends.'|t('portero-sso'), name: 'allowedDomains', value: (raw.allowedDomains ?? [])|join(', '), errors: errors.allowedDomains is defined ? [errors.allowedDomains]}) }}
+  {{ forms.lightswitchField({label: 'Create accounts on first sign-in'|t('portero-sso'), instructions: 'New staff get an account the first time they sign in.'|t('portero-sso'), name: 'createAccounts', on: raw.createAccounts ?? false}) }}
+  {{ forms.lightswitchField({label: 'Match existing accounts by email'|t('portero-sso'), instructions: 'Links people who already have an account here. Needs allowed domains.'|t('portero-sso'), name: 'matchByEmail', on: raw.matchByEmail ?? false, errors: errors.matchByEmail is defined ? [errors.matchByEmail]}) }}
+  {{ forms.lightswitchField({label: 'Allow matching admin accounts'|t('portero-sso'), instructions: 'Off is safer. Anyone who controls this provider could then become an admin here.'|t('portero-sso'), name: 'matchAdmins', on: raw.matchAdmins ?? false}) }}
+  {{ forms.lightswitchField({label: 'Update details on every sign-in'|t('portero-sso'), name: 'updateOnSignIn', on: raw.updateOnSignIn ?? true}) }}
+  {% if solo %}<p class="pt-note">{{ "Craft Solo holds one user, so Portero can't add accounts here. Upgrade to Team or higher."|t('portero-sso') }}</p>{% endif %}
+  {% if not hasGroups %}<p class="pt-note">{{ 'Group rules need Craft Pro, because this edition has only one user group.'|t('portero-sso') }}</p>{% else %}
+  {{ forms.checkboxSelectField({label: 'Default groups'|t('portero-sso'), instructions: 'Everyone from this connection joins these groups.'|t('portero-sso'), name: 'defaultGroups', options: groupOptions, values: raw.defaultGroups ?? [], showAllOption: false}) }}
+  {{ forms.editableTableField({
+    label: 'Group rules'|t('portero-sso'),
+    name: 'groupRules',
+    id: 'groupRules',
+    cols: {
+      value: {heading: 'If groups include'|t('portero-sso'), type: 'singleline'},
+      group: {heading: 'Add to'|t('portero-sso'), type: 'select', options: groupOptions},
+    },
+    rows: raw.groupRules ?? [],
+    allowAdd: true,
+    allowDelete: true,
+    allowReorder: true,
+    addRowLabel: 'Add a rule'|t('portero-sso'),
+  }) }}
+  {{ forms.lightswitchField({label: 'Refuse sign-in if no rule matches'|t('portero-sso'), name: 'requireGroupMatch', on: raw.requireGroupMatch ?? false}) }}
+  {{ forms.lightswitchField({label: 'Match group names to Craft group handles'|t('portero-sso'), instructions: 'A group from your provider joins the Craft group with the same handle, with no rule, and counts as a match for the setting above. Anyone who can edit groups at {provider} can then give access here. Leaving that group at {provider} removes nobody here unless the next setting is on.'|t('portero-sso', {provider: provider}), name: 'groupsByHandle', on: raw.groupsByHandle ?? false}) }}
+  {{ forms.lightswitchField({label: 'Let {provider} manage all groups'|t('portero-sso', {provider: provider}), instructions: 'Removes people from every Craft group their rules and defaults leave out. Off keeps groups that no rule names. Break-glass accounts keep theirs.'|t('portero-sso'), name: 'manageAllGroups', on: raw.manageAllGroups ?? false}) }}
+  {% endif %}
+  {{ forms.textField({label: 'Admin rule'|t('portero-sso'), instructions: 'If groups include this value, make admin. Off when empty. Anyone in that group at your provider becomes an admin here.'|t('portero-sso'), name: 'adminRule', value: raw.adminRule ?? ''}) }}
+  {% if require2fa %}<p class="pt-note">{{ 'This site requires two-step sign-in, so staff from this connection will be asked to set it up unless you turn this on.'|t('portero-sso') }}</p>{% endif %}
+  {{ forms.lightswitchField({label: 'Your provider already handles two-step sign-in'|t('portero-sso'), instructions: "Turn this on if {provider} asks for a second step. Staff from this connection then skip Craft's own two-step setup."|t('portero-sso', {provider: provider}), name: 'trustProvider2fa', on: raw.trustProvider2fa ?? false}) }}
+  {{ forms.textField({label: 'Longest session (hours)'|t('portero-sso'), instructions: "People are signed out after this long, even if they're active. This limits access after someone leaves your organization."|t('portero-sso'), name: 'maxSessionHours', value: raw.maxSessionHours ?? '', type: 'number', size: 5}) }}
+  <details class="pt-more">
+    <summary>{{ 'Attributes and advanced settings'|t('portero-sso') }}</summary>
+    {% set map = connection.attributeMap %}
+    {{ forms.textField({label: 'Email attribute'|t('portero-sso'), name: 'attribute[email]', value: map.email ?? ''}) }}
+    {{ forms.textField({label: 'First name attribute'|t('portero-sso'), name: 'attribute[firstName]', value: map.firstName ?? ''}) }}
+    {{ forms.textField({label: 'Last name attribute'|t('portero-sso'), name: 'attribute[lastName]', value: map.lastName ?? ''}) }}
+    {{ forms.textField({label: 'Groups attribute'|t('portero-sso'), name: 'attribute[groups]', value: map.groups ?? ''}) }}
+    {% if fieldOptions %}
+      {% set customRows = [] %}
+      {% for field, attribute in map.custom ?? {} %}{% set customRows = customRows|merge([{field: field, attribute: attribute}]) %}{% endfor %}
+      {{ forms.editableTableField({
+        label: 'Custom user fields'|t('portero-sso'),
+        name: 'customAttributes',
+        id: 'customAttributes',
+        cols: {
+          field: {heading: 'Craft field'|t('portero-sso'), type: 'select', options: fieldOptions},
+          attribute: {heading: 'Attribute from your provider'|t('portero-sso'), type: 'singleline'},
+        },
+        rows: customRows,
+        allowAdd: true,
+        allowDelete: true,
+        addRowLabel: 'Add a field'|t('portero-sso'),
+      }) }}
+    {% endif %}
+    {{ forms.lightswitchField({label: 'Sign out of the provider too'|t('portero-sso'), instructions: "Signing out here also ends the session at {provider}. If this site's session has already lapsed, it can't tell {provider} who to sign out."|t('portero-sso', {provider: provider}), name: 'signOutOfProvider', on: raw.signOutOfProvider ?? false}) }}
+    {{ forms.lightswitchField({label: 'Sign out here when they sign out at {provider}'|t('portero-sso', {provider: provider}), instructions: (connection.protocol == 'saml' ? 'Give {provider} the Logout URL from step 2. Only signed requests are accepted.' : 'Give {provider} the Back-channel logout URL from step 2.')|t('portero-sso', {provider: provider}), name: 'acceptProviderLogout', on: raw.acceptProviderLogout ?? false, errors: errors.acceptProviderLogout is defined ? [errors.acceptProviderLogout]}) }}
+    {% if connection.protocol == 'saml' %}
+      {{ forms.lightswitchField({label: 'Allow sign-in started at the provider'|t('portero-sso'), instructions: "For a tile in the provider's dashboard. This carries more risk, because the sign-in didn't start in this browser on this site."|t('portero-sso'), name: 'allowIdpInitiated', on: raw.saml.allowIdpInitiated ?? false}) }}
+    {% endif %}
+  </details>
+  </fieldset>
+  <div class="pt-actions"><a class="btn" href="{{ cpUrl('portero-sso/connections/' ~ uid ~ '/step/3') }}">{{ 'Back'|t('portero-sso') }}</a><span class="sp"></span><button class="btn submit" type="submit" {{ readOnly ? 'disabled' }}>{{ 'Continue'|t('portero-sso') }}</button></div>
+</form>

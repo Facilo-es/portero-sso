@@ -1,0 +1,45 @@
+{% extends '_layouts/cp' %}
+{% import '_includes/forms.twig' as forms %}
+{% set title = 'Sign-in rules'|t('portero-sso') %}
+{% set selectedSubnavItem = 'rules' %}
+{% do view.registerAssetBundle('facilo\\portero\\Craft\\assets\\PorteroAsset') %}
+
+{% block content %}
+<div class="pt">
+  {% if readOnly %}<p class="pt-note">{{ 'Changes are off on this environment. Make them where admin changes are allowed, and deploy.'|t('portero-sso') }}</p>{% endif %}
+  {% if blocked %}<p class="pt-alert"><span>{{ blocked }}</span></p>{% endif %}
+  <form method="post" class="pt-stepbox">
+    {{ csrfInput() }}{{ actionInput('portero-sso/rules/save') }}{{ redirectInput('portero-sso/rules') }}
+    <fieldset {{ readOnly ? 'disabled' }}>
+      <div class="field"><div class="heading"><label>{{ 'Who must use single sign-on?'|t('portero-sso') }}</label></div>
+        <div class="pt-ways">
+          <label><input type="radio" name="mode" value="nobody" {{ rules.mode == 'nobody' ? 'checked' }}>{{ 'Nobody'|t('portero-sso') }}</label>
+          <label><input type="radio" name="mode" value="everyone" {{ rules.mode == 'everyone' ? 'checked' }}>{{ 'Everyone except the accounts below'|t('portero-sso') }}</label>
+        </div>
+      </div>
+      {{ forms.elementSelectField({
+        label: 'Break-glass accounts'|t('portero-sso'),
+        instructions: "These people can always use a password. Keep at least one, so a provider outage can't lock you out."|t('portero-sso'),
+        name: 'breakGlass',
+        elementType: 'craft\\elements\\User',
+        elements: breakGlass,
+        criteria: {status: null, admin: true},
+      }) }}
+      {{ forms.lightswitchField({
+        label: 'Send everyone straight to the provider'|t('portero-sso'),
+        instructions: 'Skips the login page when you have one connection. Add `?portero=skip` to the login address to see it.'|t('portero-sso'),
+        name: 'autoRedirect',
+        on: rules.autoRedirect,
+      }) }}
+      {{ forms.textField({
+        label: 'Keep login history for (days)'|t('portero-sso'),
+        name: 'historyDays',
+        value: rules.historyDays,
+        type: 'number',
+        size: 5,
+      }) }}
+    </fieldset>
+    <div class="pt-actions"><span class="sp"></span><button class="btn submit" type="submit" {{ readOnly ? 'disabled' }}>{{ 'Save'|t('app') }}</button></div>
+  </form>
+</div>
+{% endblock %}
