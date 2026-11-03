@@ -4,7 +4,6 @@ namespace facilo\portero\Craft;
 
 use Craft;
 use craft\elements\User;
-use craft\events\AuthenticateUserEvent;
 use facilo\portero\Plugin;
 use yii\base\Component;
 
@@ -61,25 +60,26 @@ class Rules extends Component
         return $missing;
     }
 
-    /** The message shows only after the right password, so it can't tell a stranger which accounts exist. */
-    public function guardPassword(AuthenticateUserEvent $event): void
+    /**
+     * The message shows only after the right password, so it can't tell a stranger which accounts exist.
+     * Craft 6 fires its password event without the user, so the plugin passes the one Craft just looked up.
+     */
+    public function refusesPassword(User $user, ?string $password, ?string $hash): bool
     {
-        /** @var User $user */
-        $user = $event->sender;
         if ($this->isExempt($user)) {
-            return;
+            return false;
         }
-        if ($event->password !== null) {
+        if ($password !== null) {
             try {
-                if (!Craft::$app->getSecurity()->validatePassword($event->password, (string) $user->password)) {
-                    return;
+                if (!Craft::$app->getSecurity()->validatePassword($password, (string) $hash)) {
+                    return false;
                 }
             } catch (\yii\base\InvalidArgumentException) {
-                return;
+                return false;
             }
         }
-        $user->authError = Plugin::SSO_REQUIRED;
         Plugin::getInstance()->portero->recordPasswordRefusal($user);
+        return true;
     }
 
     /** Catches what never reaches the password check, such as signing in straight after activating an account. */

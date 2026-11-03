@@ -16,9 +16,11 @@ Work logins for Craft CMS. Portero SSO lets staff sign in to the Craft control p
 
 ## Requirements
 
-- Craft CMS 5.6 or later, Team edition or higher
-- PHP 8.2 or later
+- Craft CMS 6, Team edition or higher. For Craft 5, use Portero SSO 1.x.
+- PHP 8.5 or later
 - Group rules need Craft Pro
+
+Portero 2.x is a beta while Craft 6 is in alpha. It was tested on Craft 6.0.0-alpha.20 with PHP 8.5, MySQL 8.4 and real SAML and OpenID Connect sign-ins through Keycloak. The same licence covers 1.x and 2.x.
 
 ## Install
 

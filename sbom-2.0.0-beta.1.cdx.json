@@ -1,16 +1,16 @@
 {
  "bomFormat": "CycloneDX",
  "specVersion": "1.5",
- "serialNumber": "urn:uuid:324a4aa3-edcc-464c-8daa-879d1151e9af",
+ "serialNumber": "urn:uuid:dc2ab698-c3af-45b1-bcb9-e0f4b5ed45af",
  "version": 1,
  "metadata": {
-  "timestamp": "2026-11-02T01:29:02+00:00",
+  "timestamp": "2026-11-03T06:56:24+00:00",
   "component": {
    "type": "library",
-   "bom-ref": "pkg:composer/facilo/portero-sso@1.0.0",
+   "bom-ref": "pkg:composer/facilo/portero-sso@2.0.0-beta.1",
    "group": "facilo",
    "name": "portero-sso",
-   "version": "1.0.0"
+   "version": "2.0.0-beta.1"
   }
  },
  "components": [
@@ -121,15 +121,75 @@
   },
   {
    "type": "library",
-   "bom-ref": "pkg:composer/craftcms/cms@5.11.5.1",
+   "bom-ref": "pkg:composer/craftcms/cms@6.0.0-alpha.20",
    "name": "cms",
    "group": "craftcms",
-   "version": "5.11.5.1",
-   "purl": "pkg:composer/craftcms/cms@5.11.5.1",
+   "version": "6.0.0-alpha.20",
+   "purl": "pkg:composer/craftcms/cms@6.0.0-alpha.20",
    "licenses": [
     {
      "license": {
       "name": "proprietary"
+     }
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:composer/craftcms/cms-assets@6.0.0-alpha.20",
+   "name": "cms-assets",
+   "group": "craftcms",
+   "version": "6.0.0-alpha.20",
+   "purl": "pkg:composer/craftcms/cms-assets@6.0.0-alpha.20",
+   "licenses": [
+    {
+     "license": {
+      "name": "proprietary"
+     }
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:composer/craftcms/laravel-aliases@2.1.0",
+   "name": "laravel-aliases",
+   "group": "craftcms",
+   "version": "2.1.0",
+   "purl": "pkg:composer/craftcms/laravel-aliases@2.1.0",
+   "licenses": [
+    {
+     "license": {
+      "name": "MIT"
+     }
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:composer/craftcms/laravel-dependency-aware-cache@1.2.3",
+   "name": "laravel-dependency-aware-cache",
+   "group": "craftcms",
+   "version": "1.2.3",
+   "purl": "pkg:composer/craftcms/laravel-dependency-aware-cache@1.2.3",
+   "licenses": [
+    {
+     "license": {
+      "name": "BSD-3-Clause"
+     }
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:composer/craftcms/laravel-ruleset-validation@1.1.0",
+   "name": "laravel-ruleset-validation",
+   "group": "craftcms",
+   "version": "1.1.0",
+   "purl": "pkg:composer/craftcms/laravel-ruleset-validation@1.1.0",
+   "licenses": [
+    {
+     "license": {
+      "name": "MIT"
      }
     }
    ]
@@ -151,11 +211,11 @@
   },
   {
    "type": "library",
-   "bom-ref": "pkg:composer/craftcms/server-check@5.1.0",
+   "bom-ref": "pkg:composer/craftcms/server-check@6.0.0",
    "name": "server-check",
    "group": "craftcms",
-   "version": "5.1.0",
-   "purl": "pkg:composer/craftcms/server-check@5.1.0",
+   "version": "6.0.0",
+   "purl": "pkg:composer/craftcms/server-check@6.0.0",
    "licenses": [
     {
      "license": {
@@ -175,6 +235,21 @@
     {
      "license": {
       "name": "MIT"
+     }
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:composer/craftcms/yii2-adapter@6.0.0-alpha.20",
+   "name": "yii2-adapter",
+   "group": "craftcms",
+   "version": "6.0.0-alpha.20",
+   "purl": "pkg:composer/craftcms/yii2-adapter@6.0.0-alpha.20",
+   "licenses": [
+    {
+     "license": {
+      "name": "proprietary"
      }
     }
    ]
@@ -211,11 +286,41 @@
   },
   {
    "type": "library",
-   "bom-ref": "pkg:composer/doctrine/collections@2.6.0",
+   "bom-ref": "pkg:composer/defuse/php-encryption@2.4.0",
+   "name": "php-encryption",
+   "group": "defuse",
+   "version": "2.4.0",
+   "purl": "pkg:composer/defuse/php-encryption@2.4.0",
+   "licenses": [
+    {
+     "license": {
+      "name": "MIT"
+     }
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:composer/dflydev/dot-access-data@3.0.3",
+   "name": "dot-access-data",
+   "group": "dflydev",
+   "version": "3.0.3",
+   "purl": "pkg:composer/dflydev/dot-access-data@3.0.3",
+   "licenses": [
+    {
+     "license": {
+      "name": "MIT"
+     }
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:composer/doctrine/collections@3.1.0",
    "name": "collections",
    "group": "doctrine",
-   "version": "2.6.0",
-   "purl": "pkg:composer/doctrine/collections@2.6.0",
+   "version": "3.1.0",
+   "purl": "pkg:composer/doctrine/collections@3.1.0",
    "licenses": [
     {
      "license": {
@@ -271,6 +376,21 @@
   },
   {
    "type": "library",
+   "bom-ref": "pkg:composer/dragonmantank/cron-expression@3.6.1",
+   "name": "cron-expression",
+   "group": "dragonmantank",
+   "version": "3.6.1",
+   "purl": "pkg:composer/dragonmantank/cron-expression@3.6.1",
+   "licenses": [
+    {
+     "license": {
+      "name": "MIT"
+     }
+    }
+   ]
+  },
+  {
+   "type": "library",
    "bom-ref": "pkg:composer/egulias/email-validator@4.0.4",
    "name": "email-validator",
    "group": "egulias",
@@ -286,11 +406,11 @@
   },
   {
    "type": "library",
-   "bom-ref": "pkg:composer/elvanto/litemoji@4.3.0",
+   "bom-ref": "pkg:composer/elvanto/litemoji@5.2.0",
    "name": "litemoji",
    "group": "elvanto",
-   "version": "4.3.0",
-   "purl": "pkg:composer/elvanto/litemoji@4.3.0",
+   "version": "5.2.0",
+   "purl": "pkg:composer/elvanto/litemoji@5.2.0",
    "licenses": [
     {
      "license": {
@@ -346,6 +466,36 @@
   },
   {
    "type": "library",
+   "bom-ref": "pkg:composer/fruitcake/php-cors@1.4.0",
+   "name": "php-cors",
+   "group": "fruitcake",
+   "version": "1.4.0",
+   "purl": "pkg:composer/fruitcake/php-cors@1.4.0",
+   "licenses": [
+    {
+     "license": {
+      "name": "MIT"
+     }
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:composer/graham-campbell/result-type@1.2.0",
+   "name": "result-type",
+   "group": "graham-campbell",
+   "version": "1.2.0",
+   "purl": "pkg:composer/graham-campbell/result-type@1.2.0",
+   "licenses": [
+    {
+     "license": {
+      "name": "MIT"
+     }
+    }
+   ]
+  },
+  {
+   "type": "library",
    "bom-ref": "pkg:composer/guzzlehttp/guzzle@7.16.1",
    "name": "guzzle",
    "group": "guzzlehttp",
@@ -391,11 +541,11 @@
   },
   {
    "type": "library",
-   "bom-ref": "pkg:composer/illuminate/collections@10.49.0",
-   "name": "collections",
-   "group": "illuminate",
-   "version": "10.49.0",
-   "purl": "pkg:composer/illuminate/collections@10.49.0",
+   "bom-ref": "pkg:composer/guzzlehttp/uri-template@2.0.1",
+   "name": "uri-template",
+   "group": "guzzlehttp",
+   "version": "2.0.1",
+   "purl": "pkg:composer/guzzlehttp/uri-template@2.0.1",
    "licenses": [
     {
      "license": {
@@ -406,11 +556,11 @@
   },
   {
    "type": "library",
-   "bom-ref": "pkg:composer/illuminate/conditionable@10.49.0",
-   "name": "conditionable",
-   "group": "illuminate",
-   "version": "10.49.0",
-   "purl": "pkg:composer/illuminate/conditionable@10.49.0",
+   "bom-ref": "pkg:composer/inertiajs/inertia-laravel@3.7.0",
+   "name": "inertia-laravel",
+   "group": "inertiajs",
+   "version": "3.7.0",
+   "purl": "pkg:composer/inertiajs/inertia-laravel@3.7.0",
    "licenses": [
     {
      "license": {
@@ -421,11 +571,11 @@
   },
   {
    "type": "library",
-   "bom-ref": "pkg:composer/illuminate/contracts@10.49.0",
-   "name": "contracts",
-   "group": "illuminate",
-   "version": "10.49.0",
-   "purl": "pkg:composer/illuminate/contracts@10.49.0",
+   "bom-ref": "pkg:composer/intervention/gif@5.0.1",
+   "name": "gif",
+   "group": "intervention",
+   "version": "5.0.1",
+   "purl": "pkg:composer/intervention/gif@5.0.1",
    "licenses": [
     {
      "license": {
@@ -436,11 +586,11 @@
   },
   {
    "type": "library",
-   "bom-ref": "pkg:composer/illuminate/macroable@10.49.0",
-   "name": "macroable",
-   "group": "illuminate",
-   "version": "10.49.0",
-   "purl": "pkg:composer/illuminate/macroable@10.49.0",
+   "bom-ref": "pkg:composer/intervention/image@4.4.1",
+   "name": "image",
+   "group": "intervention",
+   "version": "4.4.1",
+   "purl": "pkg:composer/intervention/image@4.4.1",
    "licenses": [
     {
      "license": {
@@ -451,11 +601,206 @@
   },
   {
    "type": "library",
-   "bom-ref": "pkg:composer/illuminate/support@10.49.0",
-   "name": "support",
-   "group": "illuminate",
-   "version": "10.49.0",
-   "purl": "pkg:composer/illuminate/support@10.49.0",
+   "bom-ref": "pkg:composer/laravel/framework@13.39.0",
+   "name": "framework",
+   "group": "laravel",
+   "version": "13.39.0",
+   "purl": "pkg:composer/laravel/framework@13.39.0",
+   "licenses": [
+    {
+     "license": {
+      "name": "MIT"
+     }
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:composer/laravel/passport@13.10.0",
+   "name": "passport",
+   "group": "laravel",
+   "version": "13.10.0",
+   "purl": "pkg:composer/laravel/passport@13.10.0",
+   "licenses": [
+    {
+     "license": {
+      "name": "MIT"
+     }
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:composer/laravel/prompts@0.3.26",
+   "name": "prompts",
+   "group": "laravel",
+   "version": "0.3.26",
+   "purl": "pkg:composer/laravel/prompts@0.3.26",
+   "licenses": [
+    {
+     "license": {
+      "name": "MIT"
+     }
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:composer/laravel/serializable-closure@2.1.0",
+   "name": "serializable-closure",
+   "group": "laravel",
+   "version": "2.1.0",
+   "purl": "pkg:composer/laravel/serializable-closure@2.1.0",
+   "licenses": [
+    {
+     "license": {
+      "name": "MIT"
+     }
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:composer/laravel/wayfinder@0.1.23",
+   "name": "wayfinder",
+   "group": "laravel",
+   "version": "0.1.23",
+   "purl": "pkg:composer/laravel/wayfinder@0.1.23",
+   "licenses": [
+    {
+     "license": {
+      "name": "MIT"
+     }
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:composer/lcobucci/jwt@5.6.1",
+   "name": "jwt",
+   "group": "lcobucci",
+   "version": "5.6.1",
+   "purl": "pkg:composer/lcobucci/jwt@5.6.1",
+   "licenses": [
+    {
+     "license": {
+      "name": "BSD-3-Clause"
+     }
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:composer/league/commonmark@2.10.7",
+   "name": "commonmark",
+   "group": "league",
+   "version": "2.10.7",
+   "purl": "pkg:composer/league/commonmark@2.10.7",
+   "licenses": [
+    {
+     "license": {
+      "name": "BSD-3-Clause"
+     }
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:composer/league/config@1.2.0",
+   "name": "config",
+   "group": "league",
+   "version": "1.2.0",
+   "purl": "pkg:composer/league/config@1.2.0",
+   "licenses": [
+    {
+     "license": {
+      "name": "BSD-3-Clause"
+     }
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:composer/league/event@3.0.3",
+   "name": "event",
+   "group": "league",
+   "version": "3.0.3",
+   "purl": "pkg:composer/league/event@3.0.3",
+   "licenses": [
+    {
+     "license": {
+      "name": "MIT"
+     }
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:composer/league/flysystem@3.36.0",
+   "name": "flysystem",
+   "group": "league",
+   "version": "3.36.0",
+   "purl": "pkg:composer/league/flysystem@3.36.0",
+   "licenses": [
+    {
+     "license": {
+      "name": "MIT"
+     }
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:composer/league/flysystem-local@3.35.3",
+   "name": "flysystem-local",
+   "group": "league",
+   "version": "3.35.3",
+   "purl": "pkg:composer/league/flysystem-local@3.35.3",
+   "licenses": [
+    {
+     "license": {
+      "name": "MIT"
+     }
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:composer/league/flysystem-path-prefixing@3.31.0",
+   "name": "flysystem-path-prefixing",
+   "group": "league",
+   "version": "3.31.0",
+   "purl": "pkg:composer/league/flysystem-path-prefixing@3.31.0",
+   "licenses": [
+    {
+     "license": {
+      "name": "MIT"
+     }
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:composer/league/mime-type-detection@1.17.0",
+   "name": "mime-type-detection",
+   "group": "league",
+   "version": "1.17.0",
+   "purl": "pkg:composer/league/mime-type-detection@1.17.0",
+   "licenses": [
+    {
+     "license": {
+      "name": "MIT"
+     }
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:composer/league/oauth2-server@9.4.1",
+   "name": "oauth2-server",
+   "group": "league",
+   "version": "9.4.1",
+   "purl": "pkg:composer/league/oauth2-server@9.4.1",
    "licenses": [
     {
      "license": {
@@ -496,11 +841,11 @@
   },
   {
    "type": "library",
-   "bom-ref": "pkg:composer/maennchen/zipstream-php@3.1.2",
+   "bom-ref": "pkg:composer/maennchen/zipstream-php@3.2.2",
    "name": "zipstream-php",
    "group": "maennchen",
-   "version": "3.1.2",
-   "purl": "pkg:composer/maennchen/zipstream-php@3.1.2",
+   "version": "3.2.2",
+   "purl": "pkg:composer/maennchen/zipstream-php@3.2.2",
    "licenses": [
     {
      "license": {
@@ -541,15 +886,15 @@
   },
   {
    "type": "library",
-   "bom-ref": "pkg:composer/masterminds/html5@2.12.0",
-   "name": "html5",
-   "group": "masterminds",
-   "version": "2.12.0",
-   "purl": "pkg:composer/masterminds/html5@2.12.0",
+   "bom-ref": "pkg:composer/mcp/sdk@0.8.1",
+   "name": "sdk",
+   "group": "mcp",
+   "version": "0.8.1",
+   "purl": "pkg:composer/mcp/sdk@0.8.1",
    "licenses": [
     {
      "license": {
-      "name": "MIT"
+      "name": "Apache-2.0"
      }
     }
    ]
@@ -601,11 +946,76 @@
   },
   {
    "type": "library",
-   "bom-ref": "pkg:composer/nesbot/carbon@2.73.0",
+   "bom-ref": "pkg:composer/nesbot/carbon@3.15.1",
    "name": "carbon",
    "group": "nesbot",
-   "version": "2.73.0",
-   "purl": "pkg:composer/nesbot/carbon@2.73.0",
+   "version": "3.15.1",
+   "purl": "pkg:composer/nesbot/carbon@3.15.1",
+   "licenses": [
+    {
+     "license": {
+      "name": "MIT"
+     }
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:composer/nette/schema@1.4.0",
+   "name": "schema",
+   "group": "nette",
+   "version": "1.4.0",
+   "purl": "pkg:composer/nette/schema@1.4.0",
+   "licenses": [
+    {
+     "license": {
+      "name": "BSD-3-Clause"
+     }
+    },
+    {
+     "license": {
+      "name": "GPL-2.0-only"
+     }
+    },
+    {
+     "license": {
+      "name": "GPL-3.0-only"
+     }
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:composer/nette/utils@4.1.6",
+   "name": "utils",
+   "group": "nette",
+   "version": "4.1.6",
+   "purl": "pkg:composer/nette/utils@4.1.6",
+   "licenses": [
+    {
+     "license": {
+      "name": "BSD-3-Clause"
+     }
+    },
+    {
+     "license": {
+      "name": "GPL-2.0-only"
+     }
+    },
+    {
+     "license": {
+      "name": "GPL-3.0-only"
+     }
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:composer/nunomaduro/termwind@2.4.0",
+   "name": "termwind",
+   "group": "nunomaduro",
+   "version": "2.4.0",
+   "purl": "pkg:composer/nunomaduro/termwind@2.4.0",
    "licenses": [
     {
      "license": {
@@ -631,11 +1041,86 @@
   },
   {
    "type": "library",
+   "bom-ref": "pkg:composer/opis/json-schema@2.6.0",
+   "name": "json-schema",
+   "group": "opis",
+   "version": "2.6.0",
+   "purl": "pkg:composer/opis/json-schema@2.6.0",
+   "licenses": [
+    {
+     "license": {
+      "name": "Apache-2.0"
+     }
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:composer/opis/string@2.1.0",
+   "name": "string",
+   "group": "opis",
+   "version": "2.1.0",
+   "purl": "pkg:composer/opis/string@2.1.0",
+   "licenses": [
+    {
+     "license": {
+      "name": "Apache-2.0"
+     }
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:composer/opis/uri@1.1.0",
+   "name": "uri",
+   "group": "opis",
+   "version": "1.1.0",
+   "purl": "pkg:composer/opis/uri@1.1.0",
+   "licenses": [
+    {
+     "license": {
+      "name": "Apache-2.0"
+     }
+    }
+   ]
+  },
+  {
+   "type": "library",
    "bom-ref": "pkg:composer/paragonie/constant_time_encoding@3.1.3",
    "name": "constant_time_encoding",
    "group": "paragonie",
    "version": "3.1.3",
    "purl": "pkg:composer/paragonie/constant_time_encoding@3.1.3",
+   "licenses": [
+    {
+     "license": {
+      "name": "MIT"
+     }
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:composer/paragonie/random_compat@9.99.100",
+   "name": "random_compat",
+   "group": "paragonie",
+   "version": "9.99.100",
+   "purl": "pkg:composer/paragonie/random_compat@9.99.100",
+   "licenses": [
+    {
+     "license": {
+      "name": "MIT"
+     }
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:composer/php-http/discovery@1.20.0",
+   "name": "discovery",
+   "group": "php-http",
+   "version": "1.20.0",
+   "purl": "pkg:composer/php-http/discovery@1.20.0",
    "licenses": [
     {
      "license": {
@@ -661,11 +1146,11 @@
   },
   {
    "type": "library",
-   "bom-ref": "pkg:composer/phpdocumentor/reflection-docblock@5.6.7",
+   "bom-ref": "pkg:composer/phpdocumentor/reflection-docblock@6.0.3",
    "name": "reflection-docblock",
    "group": "phpdocumentor",
-   "version": "5.6.7",
-   "purl": "pkg:composer/phpdocumentor/reflection-docblock@5.6.7",
+   "version": "6.0.3",
+   "purl": "pkg:composer/phpdocumentor/reflection-docblock@6.0.3",
    "licenses": [
     {
      "license": {
@@ -676,11 +1161,11 @@
   },
   {
    "type": "library",
-   "bom-ref": "pkg:composer/phpdocumentor/type-resolver@1.12.0",
+   "bom-ref": "pkg:composer/phpdocumentor/type-resolver@2.1.0",
    "name": "type-resolver",
    "group": "phpdocumentor",
-   "version": "1.12.0",
-   "purl": "pkg:composer/phpdocumentor/type-resolver@1.12.0",
+   "version": "2.1.0",
+   "purl": "pkg:composer/phpdocumentor/type-resolver@2.1.0",
    "licenses": [
     {
      "license": {
@@ -706,6 +1191,36 @@
   },
   {
    "type": "library",
+   "bom-ref": "pkg:composer/phpoption/phpoption@1.10.0",
+   "name": "phpoption",
+   "group": "phpoption",
+   "version": "1.10.0",
+   "purl": "pkg:composer/phpoption/phpoption@1.10.0",
+   "licenses": [
+    {
+     "license": {
+      "name": "Apache-2.0"
+     }
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:composer/phpseclib/phpseclib@4.0.3",
+   "name": "phpseclib",
+   "group": "phpseclib",
+   "version": "4.0.3",
+   "purl": "pkg:composer/phpseclib/phpseclib@4.0.3",
+   "licenses": [
+    {
+     "license": {
+      "name": "MIT"
+     }
+    }
+   ]
+  },
+  {
+   "type": "library",
    "bom-ref": "pkg:composer/phpstan/phpdoc-parser@2.4.1",
    "name": "phpdoc-parser",
    "group": "phpstan",
@@ -721,41 +1236,11 @@
   },
   {
    "type": "library",
-   "bom-ref": "pkg:composer/pixelandtonic/graphql-php@14.11.10.1",
-   "name": "graphql-php",
-   "group": "pixelandtonic",
-   "version": "14.11.10.1",
-   "purl": "pkg:composer/pixelandtonic/graphql-php@14.11.10.1",
-   "licenses": [
-    {
-     "license": {
-      "name": "MIT"
-     }
-    }
-   ]
-  },
-  {
-   "type": "library",
-   "bom-ref": "pkg:composer/pixelandtonic/imagine@1.5.2.1",
-   "name": "imagine",
-   "group": "pixelandtonic",
-   "version": "1.5.2.1",
-   "purl": "pkg:composer/pixelandtonic/imagine@1.5.2.1",
-   "licenses": [
-    {
-     "license": {
-      "name": "MIT"
-     }
-    }
-   ]
-  },
-  {
-   "type": "library",
-   "bom-ref": "pkg:composer/pragmarx/google2fa@8.0.3",
+   "bom-ref": "pkg:composer/pragmarx/google2fa@9.1.0",
    "name": "google2fa",
    "group": "pragmarx",
-   "version": "8.0.3",
-   "purl": "pkg:composer/pragmarx/google2fa@8.0.3",
+   "version": "9.1.0",
+   "purl": "pkg:composer/pragmarx/google2fa@9.1.0",
    "licenses": [
     {
      "license": {
@@ -886,6 +1371,36 @@
   },
   {
    "type": "library",
+   "bom-ref": "pkg:composer/psr/http-server-handler@1.0.2",
+   "name": "http-server-handler",
+   "group": "psr",
+   "version": "1.0.2",
+   "purl": "pkg:composer/psr/http-server-handler@1.0.2",
+   "licenses": [
+    {
+     "license": {
+      "name": "MIT"
+     }
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:composer/psr/http-server-middleware@1.0.2",
+   "name": "http-server-middleware",
+   "group": "psr",
+   "version": "1.0.2",
+   "purl": "pkg:composer/psr/http-server-middleware@1.0.2",
+   "licenses": [
+    {
+     "license": {
+      "name": "MIT"
+     }
+    }
+   ]
+  },
+  {
+   "type": "library",
    "bom-ref": "pkg:composer/psr/log@3.0.2",
    "name": "log",
    "group": "psr",
@@ -921,6 +1436,36 @@
    "group": "ralouphie",
    "version": "3.0.3",
    "purl": "pkg:composer/ralouphie/getallheaders@3.0.3",
+   "licenses": [
+    {
+     "license": {
+      "name": "MIT"
+     }
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:composer/ramsey/collection@2.1.1",
+   "name": "collection",
+   "group": "ramsey",
+   "version": "2.1.1",
+   "purl": "pkg:composer/ramsey/collection@2.1.1",
+   "licenses": [
+    {
+     "license": {
+      "name": "MIT"
+     }
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:composer/ramsey/uuid@4.9.4",
+   "name": "uuid",
+   "group": "ramsey",
+   "version": "4.9.4",
+   "purl": "pkg:composer/ramsey/uuid@4.9.4",
    "licenses": [
     {
      "license": {
@@ -1006,11 +1551,11 @@
   },
   {
    "type": "library",
-   "bom-ref": "pkg:composer/symfony/clock@7.4.21",
+   "bom-ref": "pkg:composer/symfony/clock@8.1.9",
    "name": "clock",
    "group": "symfony",
-   "version": "7.4.21",
-   "purl": "pkg:composer/symfony/clock@7.4.21",
+   "version": "8.1.9",
+   "purl": "pkg:composer/symfony/clock@8.1.9",
    "licenses": [
     {
      "license": {
@@ -1021,11 +1566,26 @@
   },
   {
    "type": "library",
-   "bom-ref": "pkg:composer/symfony/css-selector@7.4.22",
+   "bom-ref": "pkg:composer/symfony/console@8.1.10",
+   "name": "console",
+   "group": "symfony",
+   "version": "8.1.10",
+   "purl": "pkg:composer/symfony/console@8.1.10",
+   "licenses": [
+    {
+     "license": {
+      "name": "MIT"
+     }
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:composer/symfony/css-selector@8.1.10",
    "name": "css-selector",
    "group": "symfony",
-   "version": "7.4.22",
-   "purl": "pkg:composer/symfony/css-selector@7.4.22",
+   "version": "8.1.10",
+   "purl": "pkg:composer/symfony/css-selector@8.1.10",
    "licenses": [
     {
      "license": {
@@ -1051,11 +1611,11 @@
   },
   {
    "type": "library",
-   "bom-ref": "pkg:composer/symfony/dom-crawler@7.4.22",
+   "bom-ref": "pkg:composer/symfony/dom-crawler@8.1.10",
    "name": "dom-crawler",
    "group": "symfony",
-   "version": "7.4.22",
-   "purl": "pkg:composer/symfony/dom-crawler@7.4.22",
+   "version": "8.1.10",
+   "purl": "pkg:composer/symfony/dom-crawler@8.1.10",
    "licenses": [
     {
      "license": {
@@ -1066,11 +1626,26 @@
   },
   {
    "type": "library",
-   "bom-ref": "pkg:composer/symfony/event-dispatcher@7.4.17",
+   "bom-ref": "pkg:composer/symfony/error-handler@8.1.10",
+   "name": "error-handler",
+   "group": "symfony",
+   "version": "8.1.10",
+   "purl": "pkg:composer/symfony/error-handler@8.1.10",
+   "licenses": [
+    {
+     "license": {
+      "name": "MIT"
+     }
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:composer/symfony/event-dispatcher@8.1.5",
    "name": "event-dispatcher",
    "group": "symfony",
-   "version": "7.4.17",
-   "purl": "pkg:composer/symfony/event-dispatcher@7.4.17",
+   "version": "8.1.5",
+   "purl": "pkg:composer/symfony/event-dispatcher@8.1.5",
    "licenses": [
     {
      "license": {
@@ -1096,11 +1671,11 @@
   },
   {
    "type": "library",
-   "bom-ref": "pkg:composer/symfony/filesystem@7.4.21",
+   "bom-ref": "pkg:composer/symfony/filesystem@8.1.9",
    "name": "filesystem",
    "group": "symfony",
-   "version": "7.4.21",
-   "purl": "pkg:composer/symfony/filesystem@7.4.21",
+   "version": "8.1.9",
+   "purl": "pkg:composer/symfony/filesystem@8.1.9",
    "licenses": [
     {
      "license": {
@@ -1111,11 +1686,11 @@
   },
   {
    "type": "library",
-   "bom-ref": "pkg:composer/symfony/http-client@7.4.22",
-   "name": "http-client",
+   "bom-ref": "pkg:composer/symfony/finder@8.1.10",
+   "name": "finder",
    "group": "symfony",
-   "version": "7.4.22",
-   "purl": "pkg:composer/symfony/http-client@7.4.22",
+   "version": "8.1.10",
+   "purl": "pkg:composer/symfony/finder@8.1.10",
    "licenses": [
     {
      "license": {
@@ -1126,11 +1701,41 @@
   },
   {
    "type": "library",
-   "bom-ref": "pkg:composer/symfony/http-client-contracts@3.7.3",
-   "name": "http-client-contracts",
+   "bom-ref": "pkg:composer/symfony/html-sanitizer@8.1.10",
+   "name": "html-sanitizer",
    "group": "symfony",
-   "version": "3.7.3",
-   "purl": "pkg:composer/symfony/http-client-contracts@3.7.3",
+   "version": "8.1.10",
+   "purl": "pkg:composer/symfony/html-sanitizer@8.1.10",
+   "licenses": [
+    {
+     "license": {
+      "name": "MIT"
+     }
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:composer/symfony/http-foundation@8.1.10",
+   "name": "http-foundation",
+   "group": "symfony",
+   "version": "8.1.10",
+   "purl": "pkg:composer/symfony/http-foundation@8.1.10",
+   "licenses": [
+    {
+     "license": {
+      "name": "MIT"
+     }
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:composer/symfony/http-kernel@8.1.10",
+   "name": "http-kernel",
+   "group": "symfony",
+   "version": "8.1.10",
+   "purl": "pkg:composer/symfony/http-kernel@8.1.10",
    "licenses": [
     {
      "license": {
@@ -1276,11 +1881,11 @@
   },
   {
    "type": "library",
-   "bom-ref": "pkg:composer/symfony/polyfill-php83@1.43.0",
-   "name": "polyfill-php83",
+   "bom-ref": "pkg:composer/symfony/polyfill-php82@1.43.0",
+   "name": "polyfill-php82",
    "group": "symfony",
    "version": "1.43.0",
-   "purl": "pkg:composer/symfony/polyfill-php83@1.43.0",
+   "purl": "pkg:composer/symfony/polyfill-php82@1.43.0",
    "licenses": [
     {
      "license": {
@@ -1296,6 +1901,51 @@
    "group": "symfony",
    "version": "1.43.0",
    "purl": "pkg:composer/symfony/polyfill-php84@1.43.0",
+   "licenses": [
+    {
+     "license": {
+      "name": "MIT"
+     }
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:composer/symfony/polyfill-php85@1.43.0",
+   "name": "polyfill-php85",
+   "group": "symfony",
+   "version": "1.43.0",
+   "purl": "pkg:composer/symfony/polyfill-php85@1.43.0",
+   "licenses": [
+    {
+     "license": {
+      "name": "MIT"
+     }
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:composer/symfony/polyfill-php86@1.43.0",
+   "name": "polyfill-php86",
+   "group": "symfony",
+   "version": "1.43.0",
+   "purl": "pkg:composer/symfony/polyfill-php86@1.43.0",
+   "licenses": [
+    {
+     "license": {
+      "name": "MIT"
+     }
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:composer/symfony/polyfill-time@1.42.0",
+   "name": "polyfill-time",
+   "group": "symfony",
+   "version": "1.42.0",
+   "purl": "pkg:composer/symfony/polyfill-time@1.42.0",
    "licenses": [
     {
      "license": {
@@ -1336,11 +1986,11 @@
   },
   {
    "type": "library",
-   "bom-ref": "pkg:composer/symfony/property-access@7.4.22",
+   "bom-ref": "pkg:composer/symfony/property-access@8.1.10",
    "name": "property-access",
    "group": "symfony",
-   "version": "7.4.22",
-   "purl": "pkg:composer/symfony/property-access@7.4.22",
+   "version": "8.1.10",
+   "purl": "pkg:composer/symfony/property-access@8.1.10",
    "licenses": [
     {
      "license": {
@@ -1351,11 +2001,11 @@
   },
   {
    "type": "library",
-   "bom-ref": "pkg:composer/symfony/property-info@7.4.22",
+   "bom-ref": "pkg:composer/symfony/property-info@8.1.10",
    "name": "property-info",
    "group": "symfony",
-   "version": "7.4.22",
-   "purl": "pkg:composer/symfony/property-info@7.4.22",
+   "version": "8.1.10",
+   "purl": "pkg:composer/symfony/property-info@8.1.10",
    "licenses": [
     {
      "license": {
@@ -1366,11 +2016,41 @@
   },
   {
    "type": "library",
-   "bom-ref": "pkg:composer/symfony/serializer@7.4.22",
+   "bom-ref": "pkg:composer/symfony/psr-http-message-bridge@8.1.9",
+   "name": "psr-http-message-bridge",
+   "group": "symfony",
+   "version": "8.1.9",
+   "purl": "pkg:composer/symfony/psr-http-message-bridge@8.1.9",
+   "licenses": [
+    {
+     "license": {
+      "name": "MIT"
+     }
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:composer/symfony/routing@8.1.10",
+   "name": "routing",
+   "group": "symfony",
+   "version": "8.1.10",
+   "purl": "pkg:composer/symfony/routing@8.1.10",
+   "licenses": [
+    {
+     "license": {
+      "name": "MIT"
+     }
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:composer/symfony/serializer@8.1.10",
    "name": "serializer",
    "group": "symfony",
-   "version": "7.4.22",
-   "purl": "pkg:composer/symfony/serializer@7.4.22",
+   "version": "8.1.10",
+   "purl": "pkg:composer/symfony/serializer@8.1.10",
    "licenses": [
     {
      "license": {
@@ -1396,11 +2076,11 @@
   },
   {
    "type": "library",
-   "bom-ref": "pkg:composer/symfony/string@7.4.22",
+   "bom-ref": "pkg:composer/symfony/string@8.1.10",
    "name": "string",
    "group": "symfony",
-   "version": "7.4.22",
-   "purl": "pkg:composer/symfony/string@7.4.22",
+   "version": "8.1.10",
+   "purl": "pkg:composer/symfony/string@8.1.10",
    "licenses": [
     {
      "license": {
@@ -1411,11 +2091,11 @@
   },
   {
    "type": "library",
-   "bom-ref": "pkg:composer/symfony/translation@6.4.49",
+   "bom-ref": "pkg:composer/symfony/translation@8.1.10",
    "name": "translation",
    "group": "symfony",
-   "version": "6.4.49",
-   "purl": "pkg:composer/symfony/translation@6.4.49",
+   "version": "8.1.10",
+   "purl": "pkg:composer/symfony/translation@8.1.10",
    "licenses": [
     {
      "license": {
@@ -1441,11 +2121,11 @@
   },
   {
    "type": "library",
-   "bom-ref": "pkg:composer/symfony/type-info@7.4.22",
+   "bom-ref": "pkg:composer/symfony/type-info@8.1.10",
    "name": "type-info",
    "group": "symfony",
-   "version": "7.4.22",
-   "purl": "pkg:composer/symfony/type-info@7.4.22",
+   "version": "8.1.10",
+   "purl": "pkg:composer/symfony/type-info@8.1.10",
    "licenses": [
     {
      "license": {
@@ -1456,11 +2136,11 @@
   },
   {
    "type": "library",
-   "bom-ref": "pkg:composer/symfony/uid@7.4.21",
+   "bom-ref": "pkg:composer/symfony/uid@8.1.9",
    "name": "uid",
    "group": "symfony",
-   "version": "7.4.21",
-   "purl": "pkg:composer/symfony/uid@7.4.21",
+   "version": "8.1.9",
+   "purl": "pkg:composer/symfony/uid@8.1.9",
    "licenses": [
     {
      "license": {
@@ -1471,11 +2151,11 @@
   },
   {
    "type": "library",
-   "bom-ref": "pkg:composer/symfony/var-dumper@7.4.22",
+   "bom-ref": "pkg:composer/symfony/var-dumper@8.1.10",
    "name": "var-dumper",
    "group": "symfony",
-   "version": "7.4.22",
-   "purl": "pkg:composer/symfony/var-dumper@7.4.22",
+   "version": "8.1.10",
+   "purl": "pkg:composer/symfony/var-dumper@8.1.10",
    "licenses": [
     {
      "license": {
@@ -1486,15 +2166,30 @@
   },
   {
    "type": "library",
-   "bom-ref": "pkg:composer/symfony/yaml@7.4.22",
+   "bom-ref": "pkg:composer/symfony/yaml@8.1.10",
    "name": "yaml",
    "group": "symfony",
-   "version": "7.4.22",
-   "purl": "pkg:composer/symfony/yaml@7.4.22",
+   "version": "8.1.10",
+   "purl": "pkg:composer/symfony/yaml@8.1.10",
    "licenses": [
     {
      "license": {
       "name": "MIT"
+     }
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:composer/thamtech/yii2-ratelimiter-advanced@0.5",
+   "name": "yii2-ratelimiter-advanced",
+   "group": "thamtech",
+   "version": "0.5",
+   "purl": "pkg:composer/thamtech/yii2-ratelimiter-advanced@0.5",
+   "licenses": [
+    {
+     "license": {
+      "name": "BSD-3-Clause"
      }
     }
    ]
@@ -1516,11 +2211,56 @@
   },
   {
    "type": "library",
-   "bom-ref": "pkg:composer/twig/twig@3.28.0",
+   "bom-ref": "pkg:composer/tijsverkoyen/css-to-inline-styles@2.4.0",
+   "name": "css-to-inline-styles",
+   "group": "tijsverkoyen",
+   "version": "2.4.0",
+   "purl": "pkg:composer/tijsverkoyen/css-to-inline-styles@2.4.0",
+   "licenses": [
+    {
+     "license": {
+      "name": "BSD-3-Clause"
+     }
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:composer/tpetry/laravel-query-expressions@1.6.0",
+   "name": "laravel-query-expressions",
+   "group": "tpetry",
+   "version": "1.6.0",
+   "purl": "pkg:composer/tpetry/laravel-query-expressions@1.6.0",
+   "licenses": [
+    {
+     "license": {
+      "name": "MIT"
+     }
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:composer/twig/twig@3.30.0",
    "name": "twig",
    "group": "twig",
-   "version": "3.28.0",
-   "purl": "pkg:composer/twig/twig@3.28.0",
+   "version": "3.30.0",
+   "purl": "pkg:composer/twig/twig@3.30.0",
+   "licenses": [
+    {
+     "license": {
+      "name": "BSD-3-Clause"
+     }
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:composer/vlucas/phpdotenv@5.8.0",
+   "name": "phpdotenv",
+   "group": "vlucas",
+   "version": "5.8.0",
+   "purl": "pkg:composer/vlucas/phpdotenv@5.8.0",
    "licenses": [
     {
      "license": {
@@ -1591,6 +2331,156 @@
   },
   {
    "type": "library",
+   "bom-ref": "pkg:composer/webonyx/graphql-php@15.33.1",
+   "name": "graphql-php",
+   "group": "webonyx",
+   "version": "15.33.1",
+   "purl": "pkg:composer/webonyx/graphql-php@15.33.1",
+   "licenses": [
+    {
+     "license": {
+      "name": "MIT"
+     }
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:composer/yiisoft/aliases@3.1.1",
+   "name": "aliases",
+   "group": "yiisoft",
+   "version": "3.1.1",
+   "purl": "pkg:composer/yiisoft/aliases@3.1.1",
+   "licenses": [
+    {
+     "license": {
+      "name": "BSD-3-Clause"
+     }
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:composer/yiisoft/arrays@3.2.1",
+   "name": "arrays",
+   "group": "yiisoft",
+   "version": "3.2.1",
+   "purl": "pkg:composer/yiisoft/arrays@3.2.1",
+   "licenses": [
+    {
+     "license": {
+      "name": "BSD-3-Clause"
+     }
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:composer/yiisoft/files@2.1.1",
+   "name": "files",
+   "group": "yiisoft",
+   "version": "2.1.1",
+   "purl": "pkg:composer/yiisoft/files@2.1.1",
+   "licenses": [
+    {
+     "license": {
+      "name": "BSD-3-Clause"
+     }
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:composer/yiisoft/html@4.2.0",
+   "name": "html",
+   "group": "yiisoft",
+   "version": "4.2.0",
+   "purl": "pkg:composer/yiisoft/html@4.2.0",
+   "licenses": [
+    {
+     "license": {
+      "name": "BSD-3-Clause"
+     }
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:composer/yiisoft/i18n@1.2.2",
+   "name": "i18n",
+   "group": "yiisoft",
+   "version": "1.2.2",
+   "purl": "pkg:composer/yiisoft/i18n@1.2.2",
+   "licenses": [
+    {
+     "license": {
+      "name": "BSD-3-Clause"
+     }
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:composer/yiisoft/json@1.1.0",
+   "name": "json",
+   "group": "yiisoft",
+   "version": "1.1.0",
+   "purl": "pkg:composer/yiisoft/json@1.1.0",
+   "licenses": [
+    {
+     "license": {
+      "name": "BSD-3-Clause"
+     }
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:composer/yiisoft/strings@2.8.0",
+   "name": "strings",
+   "group": "yiisoft",
+   "version": "2.8.0",
+   "purl": "pkg:composer/yiisoft/strings@2.8.0",
+   "licenses": [
+    {
+     "license": {
+      "name": "BSD-3-Clause"
+     }
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:composer/yiisoft/translator@3.2.1",
+   "name": "translator",
+   "group": "yiisoft",
+   "version": "3.2.1",
+   "purl": "pkg:composer/yiisoft/translator@3.2.1",
+   "licenses": [
+    {
+     "license": {
+      "name": "BSD-3-Clause"
+     }
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:composer/yiisoft/translator-message-php@1.1.2",
+   "name": "translator-message-php",
+   "group": "yiisoft",
+   "version": "1.1.2",
+   "purl": "pkg:composer/yiisoft/translator-message-php@1.1.2",
+   "licenses": [
+    {
+     "license": {
+      "name": "BSD-3-Clause"
+     }
+    }
+   ]
+  },
+  {
+   "type": "library",
    "bom-ref": "pkg:composer/yiisoft/yii2@2.0.55",
    "name": "yii2",
    "group": "yiisoft",
@@ -1621,11 +2511,11 @@
   },
   {
    "type": "library",
-   "bom-ref": "pkg:composer/yiisoft/yii2-debug@2.1.28",
+   "bom-ref": "pkg:composer/yiisoft/yii2-debug@2.1.27",
    "name": "yii2-debug",
    "group": "yiisoft",
-   "version": "2.1.28",
-   "purl": "pkg:composer/yiisoft/yii2-debug@2.1.28",
+   "version": "2.1.27",
+   "purl": "pkg:composer/yiisoft/yii2-debug@2.1.27",
    "licenses": [
     {
      "license": {

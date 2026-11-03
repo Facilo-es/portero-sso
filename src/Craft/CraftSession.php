@@ -16,6 +16,8 @@ use facilo\portero\Craft\events\SyncUserEvent;
 use facilo\portero\Plugin;
 use yii\base\Event;
 
+use function CraftCms\Cms\craftAuth;
+
 final class CraftSession implements SessionGate
 {
     public const SESSION_KEY = 'portero.session';
@@ -99,7 +101,9 @@ final class CraftSession implements SessionGate
         }
         self::$signingIn = true;
         try {
-            if (!Craft::$app->getUser()->login($user, $general->userSessionDuration ?? 0)) {
+            // Craft 6 signs people in through Laravel's guard; the Yii user component only reads it.
+            craftAuth()->login($user);
+            if ((int) craftAuth()->id() !== (int) $user->id) {
                 throw new Refused('no_account', 'Craft refused the login', $identity->email);
             }
         } finally {

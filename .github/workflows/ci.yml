@@ -10,7 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: shivammathur/setup-php@v2
-        with: { php-version: '8.2' }
+        with: { php-version: '8.5' }
       - run: composer install --no-interaction --prefer-dist
       - run: vendor/bin/phpunit
   core-is-shared:
@@ -24,11 +24,12 @@ jobs:
           other=$([ "$GITHUB_REF_NAME" = "2.x" ] && echo 1.x || echo 2.x)
           if git rev-parse --verify "origin/$other" >/dev/null 2>&1; then git diff --exit-code "origin/$other" -- src/Core; fi
   latest-craft:
-    # T40: the login button hangs on this hook, so a new Craft release that drops it must fail here.
+    # T40 on Craft 6: the login buttons hang on Craft's OAuth button list and the template hook, so a new Craft 6 release that drops either must fail here.
     runs-on: ubuntu-latest
     steps:
       - uses: shivammathur/setup-php@v2
-        with: { php-version: '8.2' }
-      - run: composer create-project craftcms/craft /tmp/craft --no-install --no-scripts --no-interaction
-      - run: cd /tmp/craft && composer update --no-scripts --no-interaction
-      - run: grep -q "cp.login.alternative-login-methods" /tmp/craft/vendor/craftcms/cms/src/templates/_special/login.twig
+        with: { php-version: '8.5' }
+      - run: composer create-project "craftcms/craft:^6.0@alpha" /tmp/craft --stability=alpha --no-install --no-scripts --no-interaction
+      - run: cd /tmp/craft && composer config allow-plugins.yiisoft/yii2-composer true && composer update --no-scripts --no-interaction
+      - run: grep -q "function getLoginButtons" /tmp/craft/vendor/craftcms/cms/src/Auth/OAuth/OAuth.php
+      - run: grep -rq "cp.login.alternative-login-methods" /tmp/craft/vendor/craftcms/cms/resources/templates /tmp/craft/vendor/craftcms/cms/src 2>/dev/null

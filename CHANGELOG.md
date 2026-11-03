@@ -1,5 +1,15 @@
 # Release Notes for Portero SSO
 
+## 2.0.0-beta.1 - 2026-11-03
+
+### Added
+- Craft 6 support. Portero now runs on Craft's new plugin base class, with PHP 8.5.
+
+### Changed
+- Sign-in, sign-out and the password rules use Craft 6's own events. The control panel login page shows Portero's buttons through Craft 6's sign-in button list.
+- A refused password shows Portero's plain reason on Craft 6's login page.
+- Tested on Craft 6.0.0-alpha.20 with real SAML and OpenID Connect sign-ins through Keycloak. Okta, Entra ID and Google Workspace use the same code, checked with saved provider replies.
+
 ## 1.0.1 - 2026-11-02
 
 ### Fixed

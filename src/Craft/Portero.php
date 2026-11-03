@@ -206,7 +206,8 @@ class Portero extends Component
         $html = '';
         $return = parse_url(UrlHelper::cpUrl('dashboard'), PHP_URL_PATH);
         foreach ($this->cpConnections() as $connection) {
-            $html .= Html::a(Html::encode($this->buttonLabel($connection)), $this->loginUrl($connection->handle, $return), ['class' => 'btn portero-login']);
+            // Craft 6 draws its own sign-in buttons with this component, so Portero's match them.
+            $html .= Html::tag('craft-button', Html::encode($this->buttonLabel($connection)), ['href' => $this->loginUrl($connection->handle, $return), 'class' => 'w-full portero-login']);
         }
         return $html;
     }
