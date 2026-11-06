@@ -1,5 +1,6 @@
 // No inline scripts in Portero's screens, so a strict Content Security Policy keeps working.
 (function () {
+  var confirmForm = null;
   document.addEventListener('click', function (event) {
     var copy = event.target.closest('[data-portero-copy]');
     if (copy) {
@@ -21,6 +22,13 @@
         area.remove();
         done();
       }
+    }
+    // F11 on Craft 6: the Confirm button sits in Craft's own box, and opens the provider in a popup.
+    var popup = event.target.closest('[data-portero-popup]');
+    if (popup) {
+      event.preventDefault();
+      confirmForm = popup.closest('craft-login-form');
+      window.open(popup.getAttribute('href'), 'portero-confirm', 'width=560,height=720');
     }
     var confirmer = event.target.closest('[data-portero-confirm]');
     if (confirmer && !window.confirm(confirmer.getAttribute('data-portero-confirm'))) {
@@ -66,7 +74,11 @@
     window.addEventListener('message', function (event) {
       if (event.origin !== window.location.origin || !event.data || event.data.portero !== 'confirmed') { return; }
       var manager = window.Craft && window.Craft.elevatedSessionManager;
-      if (manager && manager.loginModal) {
+      if (confirmForm) {
+        // Craft 6's box closes and carries on when its login form reports success.
+        confirmForm.dispatchEvent(new CustomEvent('craft:login:success', {bubbles: true, composed: true}));
+        confirmForm = null;
+      } else if (manager && manager.loginModal) {
         manager.success = true;
         manager.loginModal.hide();
       }

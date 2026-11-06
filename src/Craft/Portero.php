@@ -8,7 +8,6 @@ use craft\elements\User;
 use craft\helpers\App;
 use craft\helpers\Db;
 use craft\helpers\Html;
-use craft\helpers\Session as SessionHelper;
 use craft\helpers\UrlHelper;
 use facilo\portero\Core\AccessRules;
 use facilo\portero\Core\Connection;
@@ -25,7 +24,13 @@ use facilo\portero\Craft\assets\PorteroAsset;
 use facilo\portero\Craft\events\ProviderRequestEvent;
 use facilo\portero\Craft\events\RedirectEvent;
 use facilo\portero\Plugin;
+use CraftCms\Cms\Http\Controllers\Auth\LoginController;
+use CraftCms\Cms\Cms;
+use CraftCms\Cms\View\HtmlStack;
+use Illuminate\Support\Facades\Session as LaravelSession;
 use yii\base\Component;
+
+use function CraftCms\Cms\craftAuth;
 
 /** Joins the pure logic in Core to Craft. */
 class Portero extends Component
@@ -50,6 +55,8 @@ class Portero extends Component
 
     /** What the person's provider session needs to end, kept from just before Craft's logout clears it. */
     private ?array $logoutNote = null;
+    /** Where the person pressed sign out goes next, when the connection signs them out of the provider too. */
+    private ?string $providerLogoutUrl = null;
 
     /** The session someone is leaving for another account. */
     private ?array $beforeImpersonation = null;
@@ -247,7 +254,7 @@ class Portero extends Component
     {
         $note = $this->logoutNote;
         $request = Craft::$app->getRequest();
-        if ($note === null || $request->getAcceptsJson() || Craft::$app->controller?->action?->getUniqueId() !== 'users/logout') {
+        if ($note === null || $request->getAcceptsJson() || request()->route()?->getActionName() !== LoginController::class . '@logout') {
             return;
         }
         $connection = Plugin::getInstance()->connections->get($note['connection']);
@@ -269,8 +276,15 @@ class Portero extends Component
         Craft::$app->getSession()->set(self::AFTER_LOGOUT_KEY, $request->getIsCpRequest()
             ? UrlHelper::cpUrl('login', ['portero' => 'skip'])
             : UrlHelper::siteUrl(Craft::$app->getConfig()->getGeneral()->getPostLogoutRedirect()));
-        Craft::$app->getResponse()->redirect($url)->send();
-        Craft::$app->end();
+        $this->providerLogoutUrl = $url;
+    }
+
+    /** Craft 6 signs out first and redirects after, so RequestCheck sends the person to the provider instead. */
+    public function takeProviderLogoutUrl(): ?string
+    {
+        $url = $this->providerLogoutUrl;
+        $this->providerLogoutUrl = null;
+        return $url;
     }
 
     public function afterLogoutUrl(): string
@@ -295,11 +309,24 @@ class Portero extends Component
         if ((int) $confirmed !== (int) $user->id) {
             return false;
         }
-        $seconds = Craft::$app->getConfig()->getGeneral()->elevatedSessionDuration;
-        if ($seconds !== 0) {
-            SessionHelper::set(Craft::$app->getUser()->elevatedSessionTimeoutParam, time() + $seconds);
-        }
+        // Craft 6 keeps its elevated session as Laravel's password confirmation, for its normal length.
+        LaravelSession::put(Cms::config()->getPasswordConfirmationKey(), now()->unix());
         return true;
+    }
+
+    /** Craft 6's "Confirm your identity" box takes other ways to confirm. People from a provider get this one. */
+    public function confirmButton(): string
+    {
+        if (Craft::$app->getUser()->getIsGuest()) {
+            return '';
+        }
+        $state = Craft::$app->getSession()->get(CraftSession::SESSION_KEY);
+        $connection = is_array($state) ? Plugin::getInstance()->connections->get($state['connection']) : null;
+        if ($connection === null) {
+            return '';
+        }
+        $label = Craft::t('portero-sso', 'Confirm with {provider}', ['provider' => $connection->providerLabel()]);
+        return Html::tag('craft-button', Html::encode($label), ['href' => UrlHelper::actionUrl('portero-sso/auth/confirm'), 'data-portero-popup' => true, 'class' => 'w-full portero-confirm']);
     }
 
     private function confirmKey(): string
@@ -402,35 +429,37 @@ class Portero extends Component
         }
     }
 
-    /** Runs on every web request, and reads only the session of someone already signed in. */
-    public function onWebRequest(): void
+    /**
+     * Runs on every web request, and reads only the session of someone already signed in.
+     * Returns where to send the person instead, or null to carry on.
+     */
+    public function onWebRequest(): ?string
     {
         $request = Craft::$app->getRequest();
         if ($request->getIsConsoleRequest() || !Craft::$app->getIsInstalled()) {
-            return;
+            return null;
         }
         $user = Craft::$app->getUser();
         if ($user->getIsGuest()) {
-            $this->maybeSkipLoginPage();
-            return;
+            return $this->skipLoginPageUrl();
         }
         $state = Craft::$app->getSession()->get(CraftSession::SESSION_KEY);
         if (!is_array($state)) {
             // A password session from before the rules were turned on, or anything else that got past the sign-in page.
             if (!Plugin::getInstance()->rules->isExempt($user->getIdentity()) && $user->getImpersonator() === null) {
-                $this->endSession();
+                return $this->endSession();
             }
             $this->maintain();
-            return;
+            return null;
         }
         $connection = Plugin::getInstance()->connections->get($state['connection']);
         // A deleted connection may have been deleted because it can't be trusted, so its sessions go with it.
         if ($connection === null || ($connection->maxSessionHours && time() - $state['since'] >= $connection->maxSessionHours * 3600)) {
-            $this->endSession();
+            return $this->endSession();
         }
         // Costs one lookup per request, and only for people signed in through a connection that has this on.
         if ($connection->acceptProviderLogout && (new DbSessions())->isEnded((string) $user->getToken())) {
-            $this->endSession();
+            return $this->endSession();
         }
         if ($connection->trustProvider2fa) {
             $general = Craft::$app->getConfig()->getGeneral();
@@ -441,6 +470,7 @@ class Portero extends Component
         if ($request->getIsCpRequest() && !$request->getIsActionRequest() && !$request->getAcceptsJson()) {
             $this->offerConfirmButton($connection);
         }
+        return null;
     }
 
     /** Trust covers this person's session, never a new login, so a password posted from it still meets Craft's second step. */
@@ -451,13 +481,12 @@ class Portero extends Component
         }
     }
 
-    private function endSession(): void
+    private function endSession(): string
     {
-        Craft::$app->getUser()->logout(false);
+        craftAuth()->logout();
         Craft::$app->getSession()->remove(CraftSession::SESSION_KEY);
         Craft::$app->getSession()->setNotice(Craft::t('portero-sso', 'Please sign in again.'));
-        Craft::$app->getResponse()->redirect(UrlHelper::cpUrl('login'))->send();
-        Craft::$app->end();
+        return UrlHelper::cpUrl('login');
     }
 
     /** Control panel visits are what keep the daily metadata job going. */
@@ -472,7 +501,11 @@ class Portero extends Component
     private function offerConfirmButton(Connection $connection): void
     {
         $view = Craft::$app->getView();
-        $view->registerAssetBundle(PorteroAsset::class);
+        $bundle = $view->registerAssetBundle(PorteroAsset::class);
+        // Craft 6's own pages don't print Yii's asset bundles, so the files go straight onto the page. The URLs match Yii's, so legacy pages load them once.
+        $assets = Craft::$app->getAssetManager();
+        app(HtmlStack::class)->cssFile($assets->getAssetUrl($bundle, 'portero.css'));
+        app(HtmlStack::class)->jsFile($assets->getAssetUrl($bundle, 'portero.js'));
         $view->registerMetaTag([
             'name' => 'portero-confirm',
             'content' => UrlHelper::actionUrl('portero-sso/auth/confirm'),
@@ -480,17 +513,17 @@ class Portero extends Component
         ]);
     }
 
-    private function maybeSkipLoginPage(): void
+    private function skipLoginPageUrl(): ?string
     {
         $request = Craft::$app->getRequest();
         if (!$request->getIsCpRequest() || $request->getPathInfo() !== 'login' || $request->getQueryParam('portero') === 'skip') {
-            return;
+            return null;
         }
         $enabled = $this->cpConnections();
         if (count($enabled) === 1 && Plugin::getInstance()->rules->all()['autoRedirect']) {
-            Craft::$app->getResponse()->redirect($this->loginUrl($enabled[0]->handle, parse_url(UrlHelper::cpUrl('dashboard'), PHP_URL_PATH)))->send();
-            Craft::$app->end();
+            return $this->loginUrl($enabled[0]->handle, parse_url(UrlHelper::cpUrl('dashboard'), PHP_URL_PATH));
         }
+        return null;
     }
 
     public function afterLoginUrl(Connection $connection, Result $result): string

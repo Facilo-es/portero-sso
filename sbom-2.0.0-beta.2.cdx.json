@@ -1,16 +1,16 @@
 {
  "bomFormat": "CycloneDX",
  "specVersion": "1.5",
- "serialNumber": "urn:uuid:dc2ab698-c3af-45b1-bcb9-e0f4b5ed45af",
+ "serialNumber": "urn:uuid:89f9386a-3536-415f-9fac-02683de6eda4",
  "version": 1,
  "metadata": {
-  "timestamp": "2026-11-03T06:56:24+00:00",
+  "timestamp": "2026-11-06T16:11:21+00:00",
   "component": {
    "type": "library",
-   "bom-ref": "pkg:composer/facilo/portero-sso@2.0.0-beta.1",
+   "bom-ref": "pkg:composer/facilo/portero-sso@2.0.0-beta.2",
    "group": "facilo",
    "name": "portero-sso",
-   "version": "2.0.0-beta.1"
+   "version": "2.0.0-beta.2"
   }
  },
  "components": [
@@ -601,11 +601,11 @@
   },
   {
    "type": "library",
-   "bom-ref": "pkg:composer/laravel/framework@13.39.0",
+   "bom-ref": "pkg:composer/laravel/framework@13.40.0",
    "name": "framework",
    "group": "laravel",
-   "version": "13.39.0",
-   "purl": "pkg:composer/laravel/framework@13.39.0",
+   "version": "13.40.0",
+   "purl": "pkg:composer/laravel/framework@13.40.0",
    "licenses": [
     {
      "license": {
@@ -616,11 +616,11 @@
   },
   {
    "type": "library",
-   "bom-ref": "pkg:composer/laravel/passport@13.10.0",
+   "bom-ref": "pkg:composer/laravel/passport@13.7.6",
    "name": "passport",
    "group": "laravel",
-   "version": "13.10.0",
-   "purl": "pkg:composer/laravel/passport@13.10.0",
+   "version": "13.7.6",
+   "purl": "pkg:composer/laravel/passport@13.7.6",
    "licenses": [
     {
      "license": {
@@ -811,11 +811,11 @@
   },
   {
    "type": "library",
-   "bom-ref": "pkg:composer/league/uri@7.9.1",
+   "bom-ref": "pkg:composer/league/uri@7.10.0",
    "name": "uri",
    "group": "league",
-   "version": "7.9.1",
-   "purl": "pkg:composer/league/uri@7.9.1",
+   "version": "7.10.0",
+   "purl": "pkg:composer/league/uri@7.10.0",
    "licenses": [
     {
      "license": {
@@ -826,11 +826,11 @@
   },
   {
    "type": "library",
-   "bom-ref": "pkg:composer/league/uri-interfaces@7.9.1",
+   "bom-ref": "pkg:composer/league/uri-interfaces@7.10.0",
    "name": "uri-interfaces",
    "group": "league",
-   "version": "7.9.1",
-   "purl": "pkg:composer/league/uri-interfaces@7.9.1",
+   "version": "7.10.0",
+   "purl": "pkg:composer/league/uri-interfaces@7.10.0",
    "licenses": [
     {
      "license": {
@@ -1026,11 +1026,11 @@
   },
   {
    "type": "library",
-   "bom-ref": "pkg:composer/onelogin/php-saml@4.3.2",
+   "bom-ref": "pkg:composer/onelogin/php-saml@4.4.1",
    "name": "php-saml",
    "group": "onelogin",
-   "version": "4.3.2",
-   "purl": "pkg:composer/onelogin/php-saml@4.3.2",
+   "version": "4.4.1",
+   "purl": "pkg:composer/onelogin/php-saml@4.4.1",
    "licenses": [
     {
      "license": {
@@ -1041,11 +1041,11 @@
   },
   {
    "type": "library",
-   "bom-ref": "pkg:composer/opis/json-schema@2.6.0",
+   "bom-ref": "pkg:composer/opis/json-schema@2.6.1",
    "name": "json-schema",
    "group": "opis",
-   "version": "2.6.0",
-   "purl": "pkg:composer/opis/json-schema@2.6.0",
+   "version": "2.6.1",
+   "purl": "pkg:composer/opis/json-schema@2.6.1",
    "licenses": [
     {
      "license": {
@@ -1206,11 +1206,11 @@
   },
   {
    "type": "library",
-   "bom-ref": "pkg:composer/phpseclib/phpseclib@4.0.3",
+   "bom-ref": "pkg:composer/phpseclib/phpseclib@3.0.58",
    "name": "phpseclib",
    "group": "phpseclib",
-   "version": "4.0.3",
-   "purl": "pkg:composer/phpseclib/phpseclib@4.0.3",
+   "version": "3.0.58",
+   "purl": "pkg:composer/phpseclib/phpseclib@3.0.58",
    "licenses": [
     {
      "license": {
@@ -1476,11 +1476,11 @@
   },
   {
    "type": "library",
-   "bom-ref": "pkg:composer/robrichards/xmlseclibs@3.1.5",
+   "bom-ref": "pkg:composer/robrichards/xmlseclibs@4.0.1",
    "name": "xmlseclibs",
    "group": "robrichards",
-   "version": "3.1.5",
-   "purl": "pkg:composer/robrichards/xmlseclibs@3.1.5",
+   "version": "4.0.1",
+   "purl": "pkg:composer/robrichards/xmlseclibs@4.0.1",
    "licenses": [
     {
      "license": {
@@ -1566,11 +1566,11 @@
   },
   {
    "type": "library",
-   "bom-ref": "pkg:composer/symfony/console@8.1.10",
+   "bom-ref": "pkg:composer/symfony/console@8.1.11",
    "name": "console",
    "group": "symfony",
-   "version": "8.1.10",
-   "purl": "pkg:composer/symfony/console@8.1.10",
+   "version": "8.1.11",
+   "purl": "pkg:composer/symfony/console@8.1.11",
    "licenses": [
     {
      "license": {
@@ -1596,11 +1596,11 @@
   },
   {
    "type": "library",
-   "bom-ref": "pkg:composer/symfony/deprecation-contracts@3.7.1",
+   "bom-ref": "pkg:composer/symfony/deprecation-contracts@3.8.1",
    "name": "deprecation-contracts",
    "group": "symfony",
-   "version": "3.7.1",
-   "purl": "pkg:composer/symfony/deprecation-contracts@3.7.1",
+   "version": "3.8.1",
+   "purl": "pkg:composer/symfony/deprecation-contracts@3.8.1",
    "licenses": [
     {
      "license": {
@@ -1656,11 +1656,11 @@
   },
   {
    "type": "library",
-   "bom-ref": "pkg:composer/symfony/event-dispatcher-contracts@3.7.1",
+   "bom-ref": "pkg:composer/symfony/event-dispatcher-contracts@3.8.1",
    "name": "event-dispatcher-contracts",
    "group": "symfony",
-   "version": "3.7.1",
-   "purl": "pkg:composer/symfony/event-dispatcher-contracts@3.7.1",
+   "version": "3.8.1",
+   "purl": "pkg:composer/symfony/event-dispatcher-contracts@3.8.1",
    "licenses": [
     {
      "license": {
@@ -1671,11 +1671,11 @@
   },
   {
    "type": "library",
-   "bom-ref": "pkg:composer/symfony/filesystem@8.1.9",
+   "bom-ref": "pkg:composer/symfony/filesystem@8.1.11",
    "name": "filesystem",
    "group": "symfony",
-   "version": "8.1.9",
-   "purl": "pkg:composer/symfony/filesystem@8.1.9",
+   "version": "8.1.11",
+   "purl": "pkg:composer/symfony/filesystem@8.1.11",
    "licenses": [
     {
      "license": {
@@ -1686,11 +1686,11 @@
   },
   {
    "type": "library",
-   "bom-ref": "pkg:composer/symfony/finder@8.1.10",
+   "bom-ref": "pkg:composer/symfony/finder@8.1.11",
    "name": "finder",
    "group": "symfony",
-   "version": "8.1.10",
-   "purl": "pkg:composer/symfony/finder@8.1.10",
+   "version": "8.1.11",
+   "purl": "pkg:composer/symfony/finder@8.1.11",
    "licenses": [
     {
      "license": {
@@ -1701,11 +1701,11 @@
   },
   {
    "type": "library",
-   "bom-ref": "pkg:composer/symfony/html-sanitizer@8.1.10",
+   "bom-ref": "pkg:composer/symfony/html-sanitizer@8.1.11",
    "name": "html-sanitizer",
    "group": "symfony",
-   "version": "8.1.10",
-   "purl": "pkg:composer/symfony/html-sanitizer@8.1.10",
+   "version": "8.1.11",
+   "purl": "pkg:composer/symfony/html-sanitizer@8.1.11",
    "licenses": [
     {
      "license": {
@@ -1716,11 +1716,11 @@
   },
   {
    "type": "library",
-   "bom-ref": "pkg:composer/symfony/http-foundation@8.1.10",
+   "bom-ref": "pkg:composer/symfony/http-foundation@8.1.11",
    "name": "http-foundation",
    "group": "symfony",
-   "version": "8.1.10",
-   "purl": "pkg:composer/symfony/http-foundation@8.1.10",
+   "version": "8.1.11",
+   "purl": "pkg:composer/symfony/http-foundation@8.1.11",
    "licenses": [
     {
      "license": {
@@ -1731,11 +1731,11 @@
   },
   {
    "type": "library",
-   "bom-ref": "pkg:composer/symfony/http-kernel@8.1.10",
+   "bom-ref": "pkg:composer/symfony/http-kernel@8.1.11",
    "name": "http-kernel",
    "group": "symfony",
-   "version": "8.1.10",
-   "purl": "pkg:composer/symfony/http-kernel@8.1.10",
+   "version": "8.1.11",
+   "purl": "pkg:composer/symfony/http-kernel@8.1.11",
    "licenses": [
     {
      "license": {
@@ -1881,21 +1881,6 @@
   },
   {
    "type": "library",
-   "bom-ref": "pkg:composer/symfony/polyfill-php82@1.43.0",
-   "name": "polyfill-php82",
-   "group": "symfony",
-   "version": "1.43.0",
-   "purl": "pkg:composer/symfony/polyfill-php82@1.43.0",
-   "licenses": [
-    {
-     "license": {
-      "name": "MIT"
-     }
-    }
-   ]
-  },
-  {
-   "type": "library",
    "bom-ref": "pkg:composer/symfony/polyfill-php84@1.43.0",
    "name": "polyfill-php84",
    "group": "symfony",
@@ -1986,11 +1971,11 @@
   },
   {
    "type": "library",
-   "bom-ref": "pkg:composer/symfony/property-access@8.1.10",
+   "bom-ref": "pkg:composer/symfony/property-access@8.1.11",
    "name": "property-access",
    "group": "symfony",
-   "version": "8.1.10",
-   "purl": "pkg:composer/symfony/property-access@8.1.10",
+   "version": "8.1.11",
+   "purl": "pkg:composer/symfony/property-access@8.1.11",
    "licenses": [
     {
      "license": {
@@ -2001,11 +1986,11 @@
   },
   {
    "type": "library",
-   "bom-ref": "pkg:composer/symfony/property-info@8.1.10",
+   "bom-ref": "pkg:composer/symfony/property-info@8.1.11",
    "name": "property-info",
    "group": "symfony",
-   "version": "8.1.10",
-   "purl": "pkg:composer/symfony/property-info@8.1.10",
+   "version": "8.1.11",
+   "purl": "pkg:composer/symfony/property-info@8.1.11",
    "licenses": [
     {
      "license": {
@@ -2031,11 +2016,11 @@
   },
   {
    "type": "library",
-   "bom-ref": "pkg:composer/symfony/routing@8.1.10",
+   "bom-ref": "pkg:composer/symfony/routing@8.1.11",
    "name": "routing",
    "group": "symfony",
-   "version": "8.1.10",
-   "purl": "pkg:composer/symfony/routing@8.1.10",
+   "version": "8.1.11",
+   "purl": "pkg:composer/symfony/routing@8.1.11",
    "licenses": [
     {
      "license": {
@@ -2046,11 +2031,11 @@
   },
   {
    "type": "library",
-   "bom-ref": "pkg:composer/symfony/serializer@8.1.10",
+   "bom-ref": "pkg:composer/symfony/serializer@8.1.11",
    "name": "serializer",
    "group": "symfony",
-   "version": "8.1.10",
-   "purl": "pkg:composer/symfony/serializer@8.1.10",
+   "version": "8.1.11",
+   "purl": "pkg:composer/symfony/serializer@8.1.11",
    "licenses": [
     {
      "license": {
@@ -2061,11 +2046,11 @@
   },
   {
    "type": "library",
-   "bom-ref": "pkg:composer/symfony/service-contracts@3.7.3",
+   "bom-ref": "pkg:composer/symfony/service-contracts@3.8.1",
    "name": "service-contracts",
    "group": "symfony",
-   "version": "3.7.3",
-   "purl": "pkg:composer/symfony/service-contracts@3.7.3",
+   "version": "3.8.1",
+   "purl": "pkg:composer/symfony/service-contracts@3.8.1",
    "licenses": [
     {
      "license": {
@@ -2091,11 +2076,11 @@
   },
   {
    "type": "library",
-   "bom-ref": "pkg:composer/symfony/translation@8.1.10",
+   "bom-ref": "pkg:composer/symfony/translation@8.1.11",
    "name": "translation",
    "group": "symfony",
-   "version": "8.1.10",
-   "purl": "pkg:composer/symfony/translation@8.1.10",
+   "version": "8.1.11",
+   "purl": "pkg:composer/symfony/translation@8.1.11",
    "licenses": [
     {
      "license": {
@@ -2106,11 +2091,11 @@
   },
   {
    "type": "library",
-   "bom-ref": "pkg:composer/symfony/translation-contracts@3.7.1",
+   "bom-ref": "pkg:composer/symfony/translation-contracts@3.8.1",
    "name": "translation-contracts",
    "group": "symfony",
-   "version": "3.7.1",
-   "purl": "pkg:composer/symfony/translation-contracts@3.7.1",
+   "version": "3.8.1",
+   "purl": "pkg:composer/symfony/translation-contracts@3.8.1",
    "licenses": [
     {
      "license": {
@@ -2121,11 +2106,11 @@
   },
   {
    "type": "library",
-   "bom-ref": "pkg:composer/symfony/type-info@8.1.10",
+   "bom-ref": "pkg:composer/symfony/type-info@8.1.11",
    "name": "type-info",
    "group": "symfony",
-   "version": "8.1.10",
-   "purl": "pkg:composer/symfony/type-info@8.1.10",
+   "version": "8.1.11",
+   "purl": "pkg:composer/symfony/type-info@8.1.11",
    "licenses": [
     {
      "license": {
@@ -2166,11 +2151,11 @@
   },
   {
    "type": "library",
-   "bom-ref": "pkg:composer/symfony/yaml@8.1.10",
+   "bom-ref": "pkg:composer/symfony/yaml@8.1.11",
    "name": "yaml",
    "group": "symfony",
-   "version": "8.1.10",
-   "purl": "pkg:composer/symfony/yaml@8.1.10",
+   "version": "8.1.11",
+   "purl": "pkg:composer/symfony/yaml@8.1.11",
    "licenses": [
     {
      "license": {
@@ -2301,11 +2286,11 @@
   },
   {
    "type": "library",
-   "bom-ref": "pkg:composer/web-auth/webauthn-lib@5.3.10",
+   "bom-ref": "pkg:composer/web-auth/webauthn-lib@5.3.12",
    "name": "webauthn-lib",
    "group": "web-auth",
-   "version": "5.3.10",
-   "purl": "pkg:composer/web-auth/webauthn-lib@5.3.10",
+   "version": "5.3.12",
+   "purl": "pkg:composer/web-auth/webauthn-lib@5.3.12",
    "licenses": [
     {
      "license": {

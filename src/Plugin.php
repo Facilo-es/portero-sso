@@ -18,16 +18,20 @@ use CraftCms\Cms\Auth\Events\UserAuthenticating;
 use CraftCms\Cms\Plugin\Plugin as BasePlugin;
 use CraftCms\Cms\View\TemplateHooks;
 use CraftCms\Cms\Auth\OAuth\OAuth;
+use CraftCms\Cms\Http\Middleware\Enforce2fa;
 use facilo\portero\Craft\Connections;
 use facilo\portero\Craft\LoginButtons;
 use facilo\portero\Craft\console\Module as ConsoleModule;
 use facilo\portero\Craft\Metadata;
 use facilo\portero\Craft\Portero;
+use facilo\portero\Craft\RequestCheck;
 use facilo\portero\Craft\Rules;
 use facilo\portero\Craft\TwigVariable;
 use facilo\portero\Craft\WebModule;
 use Illuminate\Auth\Events\Login;
 use Illuminate\Auth\Events\Logout;
+use Illuminate\Contracts\Auth\Middleware\AuthenticatesRequests;
+use Illuminate\Contracts\Http\Kernel as HttpKernel;
 use Illuminate\Foundation\Http\Events\RequestHandled;
 use Illuminate\Foundation\Http\Middleware\PreventRequestForgery;
 use Illuminate\Http\JsonResponse;
@@ -139,9 +143,23 @@ class Plugin extends BasePlugin
             $this->portero->signOutOfProvider();
         });
 
+        // After Craft knows who is signed in, and before its two-step check, which a trusted provider's sign-in skips.
+        $this->app->booted(function () {
+            $router = $this->app['router'];
+            $group = $router->getMiddlewareGroups()['craft'] ?? [];
+            $at = array_search(Enforce2fa::class, $group, true);
+            array_splice($group, $at === false ? count($group) : $at, 0, [RequestCheck::class]);
+            $router->middlewareGroup('craft', $group);
+            $this->app->make(HttpKernel::class)->addToMiddlewarePriorityAfter(AuthenticatesRequests::class, RequestCheck::class);
+        });
+
         $this->app->scoped(OAuth::class, LoginButtons::class);
         // The same buttons on Craft's template login page, used when the control panel's Vue page isn't served.
-        $this->app->make(TemplateHooks::class)->register('cp.login.alternative-login-methods', function () {
+        $this->app->make(TemplateHooks::class)->register('cp.login.alternative-login-methods', function (array $context) {
+            // Craft's "Confirm your identity" box runs this hook too. LoginButtons already gave it the Confirm button.
+            if (!empty($context['forElevatedSession'])) {
+                return '';
+            }
             $this->craft();
             $refused = session(self::SSO_REQUIRED);
             return ($refused ? '<p class="error" role="alert">' . htmlspecialchars($refused, ENT_QUOTES) . '</p>' : '') . $this->portero->loginButtons();
@@ -175,6 +193,19 @@ class Plugin extends BasePlugin
         });
     }
 
+    /** For RequestCheck: a redirect when Portero ends this request, such as a session past its limit. */
+    public function checkRequest(): ?string
+    {
+        $this->craft();
+        return $this->portero->onWebRequest();
+    }
+
+    /** Where to send someone who just pressed sign out, when the provider signs them out too. */
+    public function providerLogoutUrl(): ?string
+    {
+        return isset($this->components['portero']) ? $this->portero->takeProviderLogoutUrl() : null;
+    }
+
     /** Makes sure Craft's Yii app exists, as the Craft 5 code reads Craft::$app. */
     private function craft(): void
     {
@@ -192,9 +223,6 @@ class Plugin extends BasePlugin
         }
         $craft->setModule($this->handle, ['class' => WebModule::class]);
         $this->hideSecretsFromLogs($craft);
-        $craft->onInit(function () {
-            $this->portero->onWebRequest();
-        });
     }
 
     /** Craft adds the request to its logs when something fails. Provider replies hold personal data, and these values open sessions. Its log target reads logVars, not maskVars. */

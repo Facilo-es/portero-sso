@@ -4,6 +4,7 @@ namespace facilo\portero\Craft;
 
 use Craft;
 use CraftCms\Cms\Auth\OAuth\OAuth;
+use CraftCms\Cms\Http\Controllers\Auth\SessionInfoController;
 use facilo\portero\Plugin;
 use Illuminate\Support\HtmlString;
 
@@ -20,6 +21,11 @@ class LoginButtons extends OAuth
             app('Craft');
         }
         $plugin = Plugin::getInstance();
+        // The same list fills Craft's "Confirm your identity" box, where signing in again isn't the point.
+        if (request()->route()?->getActionName() === SessionInfoController::class . '@confirmPassword') {
+            $confirm = $plugin->portero->confirmButton();
+            return $confirm === '' ? $buttons : [...$buttons, new HtmlString($confirm)];
+        }
         $refused = session(Plugin::SSO_REQUIRED);
         $html = ($refused ? '<p class="error" role="alert">' . htmlspecialchars($refused, ENT_QUOTES) . '</p>' : '') . $plugin->portero->loginButtons();
         if ($html !== '') {
