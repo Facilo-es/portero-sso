@@ -1,5 +1,13 @@
 # Release Notes for Portero SSO
 
+## 1.0.2 - 2026-11-06
+
+### Fixed
+- SAML sign-in works with php-saml 4.4.1. Portero now passes the port as text, so the address checked against the provider's reply no longer gains a stray `:443` and valid sign-ins are no longer refused as sent to the wrong address.
+
+### Security
+- Requires php-saml 4.4.1 or later, which moves to xmlseclibs 4 and closes the xmlseclibs advisories published in August 2026.
+
 ## 1.0.1 - 2026-11-02
 
 ### Fixed

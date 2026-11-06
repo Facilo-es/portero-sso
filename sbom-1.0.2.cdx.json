@@ -1,16 +1,16 @@
 {
  "bomFormat": "CycloneDX",
  "specVersion": "1.5",
- "serialNumber": "urn:uuid:324a4aa3-edcc-464c-8daa-879d1151e9af",
+ "serialNumber": "urn:uuid:ef40a723-ed32-4b7d-93b7-e4c613fb9f6d",
  "version": 1,
  "metadata": {
-  "timestamp": "2026-11-02T01:29:02+00:00",
+  "timestamp": "2026-11-06T16:11:21+00:00",
   "component": {
    "type": "library",
-   "bom-ref": "pkg:composer/facilo/portero-sso@1.0.0",
+   "bom-ref": "pkg:composer/facilo/portero-sso@1.0.2",
    "group": "facilo",
    "name": "portero-sso",
-   "version": "1.0.0"
+   "version": "1.0.2"
   }
  },
  "components": [
@@ -121,11 +121,11 @@
   },
   {
    "type": "library",
-   "bom-ref": "pkg:composer/craftcms/cms@5.11.5.1",
+   "bom-ref": "pkg:composer/craftcms/cms@5.12.0.1",
    "name": "cms",
    "group": "craftcms",
-   "version": "5.11.5.1",
-   "purl": "pkg:composer/craftcms/cms@5.11.5.1",
+   "version": "5.12.0.1",
+   "purl": "pkg:composer/craftcms/cms@5.12.0.1",
    "licenses": [
     {
      "license": {
@@ -205,6 +205,21 @@
     {
      "license": {
       "name": "BSD-2-Clause"
+     }
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:composer/defuse/php-encryption@2.4.0",
+   "name": "php-encryption",
+   "group": "defuse",
+   "version": "2.4.0",
+   "purl": "pkg:composer/defuse/php-encryption@2.4.0",
+   "licenses": [
+    {
+     "license": {
+      "name": "MIT"
      }
     }
    ]
@@ -466,11 +481,26 @@
   },
   {
    "type": "library",
-   "bom-ref": "pkg:composer/league/uri@7.9.1",
-   "name": "uri",
+   "bom-ref": "pkg:composer/lcobucci/jwt@5.6.1",
+   "name": "jwt",
+   "group": "lcobucci",
+   "version": "5.6.1",
+   "purl": "pkg:composer/lcobucci/jwt@5.6.1",
+   "licenses": [
+    {
+     "license": {
+      "name": "BSD-3-Clause"
+     }
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:composer/league/event@3.0.3",
+   "name": "event",
    "group": "league",
-   "version": "7.9.1",
-   "purl": "pkg:composer/league/uri@7.9.1",
+   "version": "3.0.3",
+   "purl": "pkg:composer/league/event@3.0.3",
    "licenses": [
     {
      "license": {
@@ -481,11 +511,41 @@
   },
   {
    "type": "library",
-   "bom-ref": "pkg:composer/league/uri-interfaces@7.9.1",
+   "bom-ref": "pkg:composer/league/oauth2-server@9.4.1",
+   "name": "oauth2-server",
+   "group": "league",
+   "version": "9.4.1",
+   "purl": "pkg:composer/league/oauth2-server@9.4.1",
+   "licenses": [
+    {
+     "license": {
+      "name": "MIT"
+     }
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:composer/league/uri@7.10.0",
+   "name": "uri",
+   "group": "league",
+   "version": "7.10.0",
+   "purl": "pkg:composer/league/uri@7.10.0",
+   "licenses": [
+    {
+     "license": {
+      "name": "MIT"
+     }
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:composer/league/uri-interfaces@7.10.0",
    "name": "uri-interfaces",
    "group": "league",
-   "version": "7.9.1",
-   "purl": "pkg:composer/league/uri-interfaces@7.9.1",
+   "version": "7.10.0",
+   "purl": "pkg:composer/league/uri-interfaces@7.10.0",
    "licenses": [
     {
      "license": {
@@ -556,6 +616,21 @@
   },
   {
    "type": "library",
+   "bom-ref": "pkg:composer/mcp/sdk@0.8.1",
+   "name": "sdk",
+   "group": "mcp",
+   "version": "0.8.1",
+   "purl": "pkg:composer/mcp/sdk@0.8.1",
+   "licenses": [
+    {
+     "license": {
+      "name": "Apache-2.0"
+     }
+    }
+   ]
+  },
+  {
+   "type": "library",
    "bom-ref": "pkg:composer/mikehaertl/php-shellcommand@1.7.0",
    "name": "php-shellcommand",
    "group": "mikehaertl",
@@ -616,15 +691,60 @@
   },
   {
    "type": "library",
-   "bom-ref": "pkg:composer/onelogin/php-saml@4.3.2",
+   "bom-ref": "pkg:composer/onelogin/php-saml@4.4.1",
    "name": "php-saml",
    "group": "onelogin",
-   "version": "4.3.2",
-   "purl": "pkg:composer/onelogin/php-saml@4.3.2",
+   "version": "4.4.1",
+   "purl": "pkg:composer/onelogin/php-saml@4.4.1",
    "licenses": [
     {
      "license": {
       "name": "MIT"
+     }
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:composer/opis/json-schema@2.6.1",
+   "name": "json-schema",
+   "group": "opis",
+   "version": "2.6.1",
+   "purl": "pkg:composer/opis/json-schema@2.6.1",
+   "licenses": [
+    {
+     "license": {
+      "name": "Apache-2.0"
+     }
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:composer/opis/string@2.1.0",
+   "name": "string",
+   "group": "opis",
+   "version": "2.1.0",
+   "purl": "pkg:composer/opis/string@2.1.0",
+   "licenses": [
+    {
+     "license": {
+      "name": "Apache-2.0"
+     }
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:composer/opis/uri@1.1.0",
+   "name": "uri",
+   "group": "opis",
+   "version": "1.1.0",
+   "purl": "pkg:composer/opis/uri@1.1.0",
+   "licenses": [
+    {
+     "license": {
+      "name": "Apache-2.0"
      }
     }
    ]
@@ -636,6 +756,36 @@
    "group": "paragonie",
    "version": "3.1.3",
    "purl": "pkg:composer/paragonie/constant_time_encoding@3.1.3",
+   "licenses": [
+    {
+     "license": {
+      "name": "MIT"
+     }
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:composer/paragonie/random_compat@9.99.100",
+   "name": "random_compat",
+   "group": "paragonie",
+   "version": "9.99.100",
+   "purl": "pkg:composer/paragonie/random_compat@9.99.100",
+   "licenses": [
+    {
+     "license": {
+      "name": "MIT"
+     }
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:composer/php-http/discovery@1.20.0",
+   "name": "discovery",
+   "group": "php-http",
+   "version": "1.20.0",
+   "purl": "pkg:composer/php-http/discovery@1.20.0",
    "licenses": [
     {
      "license": {
@@ -696,6 +846,21 @@
    "group": "phpoffice",
    "version": "5.10.0",
    "purl": "pkg:composer/phpoffice/phpspreadsheet@5.10.0",
+   "licenses": [
+    {
+     "license": {
+      "name": "MIT"
+     }
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:composer/phpseclib/phpseclib@3.0.58",
+   "name": "phpseclib",
+   "group": "phpseclib",
+   "version": "3.0.58",
+   "purl": "pkg:composer/phpseclib/phpseclib@3.0.58",
    "licenses": [
     {
      "license": {
@@ -886,6 +1051,36 @@
   },
   {
    "type": "library",
+   "bom-ref": "pkg:composer/psr/http-server-handler@1.0.2",
+   "name": "http-server-handler",
+   "group": "psr",
+   "version": "1.0.2",
+   "purl": "pkg:composer/psr/http-server-handler@1.0.2",
+   "licenses": [
+    {
+     "license": {
+      "name": "MIT"
+     }
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:composer/psr/http-server-middleware@1.0.2",
+   "name": "http-server-middleware",
+   "group": "psr",
+   "version": "1.0.2",
+   "purl": "pkg:composer/psr/http-server-middleware@1.0.2",
+   "licenses": [
+    {
+     "license": {
+      "name": "MIT"
+     }
+    }
+   ]
+  },
+  {
+   "type": "library",
    "bom-ref": "pkg:composer/psr/log@3.0.2",
    "name": "log",
    "group": "psr",
@@ -931,11 +1126,11 @@
   },
   {
    "type": "library",
-   "bom-ref": "pkg:composer/robrichards/xmlseclibs@3.1.5",
+   "bom-ref": "pkg:composer/robrichards/xmlseclibs@4.0.1",
    "name": "xmlseclibs",
    "group": "robrichards",
-   "version": "3.1.5",
-   "purl": "pkg:composer/robrichards/xmlseclibs@3.1.5",
+   "version": "4.0.1",
+   "purl": "pkg:composer/robrichards/xmlseclibs@4.0.1",
    "licenses": [
     {
      "license": {
@@ -1036,11 +1231,11 @@
   },
   {
    "type": "library",
-   "bom-ref": "pkg:composer/symfony/deprecation-contracts@3.7.1",
+   "bom-ref": "pkg:composer/symfony/deprecation-contracts@3.8.1",
    "name": "deprecation-contracts",
    "group": "symfony",
-   "version": "3.7.1",
-   "purl": "pkg:composer/symfony/deprecation-contracts@3.7.1",
+   "version": "3.8.1",
+   "purl": "pkg:composer/symfony/deprecation-contracts@3.8.1",
    "licenses": [
     {
      "license": {
@@ -1081,11 +1276,11 @@
   },
   {
    "type": "library",
-   "bom-ref": "pkg:composer/symfony/event-dispatcher-contracts@3.7.1",
+   "bom-ref": "pkg:composer/symfony/event-dispatcher-contracts@3.8.1",
    "name": "event-dispatcher-contracts",
    "group": "symfony",
-   "version": "3.7.1",
-   "purl": "pkg:composer/symfony/event-dispatcher-contracts@3.7.1",
+   "version": "3.8.1",
+   "purl": "pkg:composer/symfony/event-dispatcher-contracts@3.8.1",
    "licenses": [
     {
      "license": {
@@ -1096,11 +1291,11 @@
   },
   {
    "type": "library",
-   "bom-ref": "pkg:composer/symfony/filesystem@7.4.21",
+   "bom-ref": "pkg:composer/symfony/filesystem@7.4.23",
    "name": "filesystem",
    "group": "symfony",
-   "version": "7.4.21",
-   "purl": "pkg:composer/symfony/filesystem@7.4.21",
+   "version": "7.4.23",
+   "purl": "pkg:composer/symfony/filesystem@7.4.23",
    "licenses": [
     {
      "license": {
@@ -1111,11 +1306,26 @@
   },
   {
    "type": "library",
-   "bom-ref": "pkg:composer/symfony/http-client@7.4.22",
+   "bom-ref": "pkg:composer/symfony/finder@7.4.23",
+   "name": "finder",
+   "group": "symfony",
+   "version": "7.4.23",
+   "purl": "pkg:composer/symfony/finder@7.4.23",
+   "licenses": [
+    {
+     "license": {
+      "name": "MIT"
+     }
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:composer/symfony/http-client@7.4.23",
    "name": "http-client",
    "group": "symfony",
-   "version": "7.4.22",
-   "purl": "pkg:composer/symfony/http-client@7.4.22",
+   "version": "7.4.23",
+   "purl": "pkg:composer/symfony/http-client@7.4.23",
    "licenses": [
     {
      "license": {
@@ -1126,11 +1336,11 @@
   },
   {
    "type": "library",
-   "bom-ref": "pkg:composer/symfony/http-client-contracts@3.7.3",
+   "bom-ref": "pkg:composer/symfony/http-client-contracts@3.8.1",
    "name": "http-client-contracts",
    "group": "symfony",
-   "version": "3.7.3",
-   "purl": "pkg:composer/symfony/http-client-contracts@3.7.3",
+   "version": "3.8.1",
+   "purl": "pkg:composer/symfony/http-client-contracts@3.8.1",
    "licenses": [
     {
      "license": {
@@ -1336,11 +1546,11 @@
   },
   {
    "type": "library",
-   "bom-ref": "pkg:composer/symfony/property-access@7.4.22",
+   "bom-ref": "pkg:composer/symfony/property-access@7.4.23",
    "name": "property-access",
    "group": "symfony",
-   "version": "7.4.22",
-   "purl": "pkg:composer/symfony/property-access@7.4.22",
+   "version": "7.4.23",
+   "purl": "pkg:composer/symfony/property-access@7.4.23",
    "licenses": [
     {
      "license": {
@@ -1351,11 +1561,11 @@
   },
   {
    "type": "library",
-   "bom-ref": "pkg:composer/symfony/property-info@7.4.22",
+   "bom-ref": "pkg:composer/symfony/property-info@7.4.23",
    "name": "property-info",
    "group": "symfony",
-   "version": "7.4.22",
-   "purl": "pkg:composer/symfony/property-info@7.4.22",
+   "version": "7.4.23",
+   "purl": "pkg:composer/symfony/property-info@7.4.23",
    "licenses": [
     {
      "license": {
@@ -1366,11 +1576,11 @@
   },
   {
    "type": "library",
-   "bom-ref": "pkg:composer/symfony/serializer@7.4.22",
+   "bom-ref": "pkg:composer/symfony/serializer@7.4.23",
    "name": "serializer",
    "group": "symfony",
-   "version": "7.4.22",
-   "purl": "pkg:composer/symfony/serializer@7.4.22",
+   "version": "7.4.23",
+   "purl": "pkg:composer/symfony/serializer@7.4.23",
    "licenses": [
     {
      "license": {
@@ -1381,11 +1591,11 @@
   },
   {
    "type": "library",
-   "bom-ref": "pkg:composer/symfony/service-contracts@3.7.3",
+   "bom-ref": "pkg:composer/symfony/service-contracts@3.8.1",
    "name": "service-contracts",
    "group": "symfony",
-   "version": "3.7.3",
-   "purl": "pkg:composer/symfony/service-contracts@3.7.3",
+   "version": "3.8.1",
+   "purl": "pkg:composer/symfony/service-contracts@3.8.1",
    "licenses": [
     {
      "license": {
@@ -1411,11 +1621,11 @@
   },
   {
    "type": "library",
-   "bom-ref": "pkg:composer/symfony/translation@6.4.49",
+   "bom-ref": "pkg:composer/symfony/translation@6.4.50",
    "name": "translation",
    "group": "symfony",
-   "version": "6.4.49",
-   "purl": "pkg:composer/symfony/translation@6.4.49",
+   "version": "6.4.50",
+   "purl": "pkg:composer/symfony/translation@6.4.50",
    "licenses": [
     {
      "license": {
@@ -1426,11 +1636,11 @@
   },
   {
    "type": "library",
-   "bom-ref": "pkg:composer/symfony/translation-contracts@3.7.1",
+   "bom-ref": "pkg:composer/symfony/translation-contracts@3.8.1",
    "name": "translation-contracts",
    "group": "symfony",
-   "version": "3.7.1",
-   "purl": "pkg:composer/symfony/translation-contracts@3.7.1",
+   "version": "3.8.1",
+   "purl": "pkg:composer/symfony/translation-contracts@3.8.1",
    "licenses": [
     {
      "license": {
@@ -1441,11 +1651,11 @@
   },
   {
    "type": "library",
-   "bom-ref": "pkg:composer/symfony/type-info@7.4.22",
+   "bom-ref": "pkg:composer/symfony/type-info@7.4.23",
    "name": "type-info",
    "group": "symfony",
-   "version": "7.4.22",
-   "purl": "pkg:composer/symfony/type-info@7.4.22",
+   "version": "7.4.23",
+   "purl": "pkg:composer/symfony/type-info@7.4.23",
    "licenses": [
     {
      "license": {
@@ -1486,11 +1696,11 @@
   },
   {
    "type": "library",
-   "bom-ref": "pkg:composer/symfony/yaml@7.4.22",
+   "bom-ref": "pkg:composer/symfony/yaml@7.4.23",
    "name": "yaml",
    "group": "symfony",
-   "version": "7.4.22",
-   "purl": "pkg:composer/symfony/yaml@7.4.22",
+   "version": "7.4.23",
+   "purl": "pkg:composer/symfony/yaml@7.4.23",
    "licenses": [
     {
      "license": {
@@ -1516,11 +1726,11 @@
   },
   {
    "type": "library",
-   "bom-ref": "pkg:composer/twig/twig@3.28.0",
+   "bom-ref": "pkg:composer/twig/twig@3.30.0",
    "name": "twig",
    "group": "twig",
-   "version": "3.28.0",
-   "purl": "pkg:composer/twig/twig@3.28.0",
+   "version": "3.30.0",
+   "purl": "pkg:composer/twig/twig@3.30.0",
    "licenses": [
     {
      "license": {
@@ -1561,11 +1771,11 @@
   },
   {
    "type": "library",
-   "bom-ref": "pkg:composer/web-auth/webauthn-lib@5.3.10",
+   "bom-ref": "pkg:composer/web-auth/webauthn-lib@5.3.12",
    "name": "webauthn-lib",
    "group": "web-auth",
-   "version": "5.3.10",
-   "purl": "pkg:composer/web-auth/webauthn-lib@5.3.10",
+   "version": "5.3.12",
+   "purl": "pkg:composer/web-auth/webauthn-lib@5.3.12",
    "licenses": [
     {
      "license": {

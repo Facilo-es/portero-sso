@@ -287,7 +287,7 @@ final class SamlBroker
         $parts = parse_url($acs);
         Utils::setSelfProtocol($parts['scheme']);
         Utils::setSelfHost($parts['host']);
-        Utils::setSelfPort($parts['port'] ?? ($parts['scheme'] === 'https' ? 443 : 80));
+        Utils::setSelfPort((string) ($parts['port'] ?? ($parts['scheme'] === 'https' ? 443 : 80)));
         Utils::setBaseURLPath(null);
         $_SERVER['REQUEST_URI'] = $parts['path'];
         $_SERVER['QUERY_STRING'] = '';
